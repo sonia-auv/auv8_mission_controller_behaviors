@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="babe_test_launch_front">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.babe_test_launch_front_sm" class="babe_test_launch_frontSM" />
+	<tagstring>vision</tagstring>
+	<author>fcr</author>
+	<date>Thu Jan 30 2020</date>
+	<description>
+		dsadsa
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>
