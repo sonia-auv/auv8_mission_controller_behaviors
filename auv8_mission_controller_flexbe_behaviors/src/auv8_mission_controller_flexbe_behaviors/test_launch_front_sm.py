@@ -62,7 +62,7 @@ class test_launch_frontSM(Behavior):
 
 			# x:208 y:150
 			OperatableStateMachine.add('launch_front',
-										LaunchVision(param_node_name='simple_jiangshi', camera_no=2, param_cmd=1),
+										LaunchVision(param_node_name='simple_jiangshi', camera_no=1, param_cmd=1),
 										transitions={'continue': 'finished', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
