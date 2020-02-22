@@ -19,7 +19,6 @@ class LaunchVision(EventState):
         <= failed			Indicates that the camera didn't stated
 
     """
-
     def __init__(self, param_node_name, camera_no, param_cmd):
         super(LaunchVision, self).__init__(outcomes=['continue', 'failed'])
         self.execute_vision_cmd = None
@@ -27,24 +26,18 @@ class LaunchVision(EventState):
         self.camera_no = camera_no
         self.param_node_name = param_node_name
         self.param_cmd = param_cmd
-        print('texte222')
 
     def on_enter(self, userdata):
         try:
-            print('texte')
             rospy.wait_for_service('/proc_image_processing/execute_cmd')
             self.execute_vision_cmd = rospy.ServiceProxy('/proc_image_processing/execute_cmd', execute_cmd)
-            print('texte2')
             rospy.wait_for_service('/provider_vision/start_stop_camera')
             self.start_stop_vision = rospy.ServiceProxy('/provider_vision/start_stop_camera', start_stop_media)
-            print('texte3')
         except rospy.ServiceException as exc:
             rospy.loginfo('Cannot access service' + str(exc))
             return 'failed'
         try:
-            rospy.loginfo('ceci est un message')
             if self.camera_no == 1:
-                rospy.loginfo('ouverture de la front')
                 self.start_stop_vision('Front_GigE', 1)
                 self.start_stop_vision('Bottom_GigE', 2)
                 self.param_media_name = '/provider_vision/Front_GigE'

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="move x">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.move_x_sm" class="movexSM" />
+	<tagstring>sda</tagstring>
+	<author>fcr</author>
+	<date>Sat Feb 22 2020</date>
+	<description>
+		sada
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>
