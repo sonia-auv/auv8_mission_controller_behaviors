@@ -18,7 +18,7 @@ The control part use the normal axis of the sub.
 class ForwardBottomAlexFrank(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
         self.vision_is_unreached = False
         self.target_reached = False
         self.victory = False

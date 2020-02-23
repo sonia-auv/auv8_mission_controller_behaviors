@@ -8,7 +8,7 @@ from flexbe_core import EventState, Logger
 # class WaitHitCountTarget(EventState):
 
 #     def __init__(self):
-        super(RotateYawRelative, self)
+ #       super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
 #         self.set_local_target = None
 #         self.vision_subscriber = None
 #         self.set_local_target_topic = None

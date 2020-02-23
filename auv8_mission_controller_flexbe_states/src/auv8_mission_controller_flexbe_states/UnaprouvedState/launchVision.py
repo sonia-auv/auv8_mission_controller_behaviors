@@ -8,7 +8,7 @@ from provider_vision.srv import start_stop_media
 class LaunchVision(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
         self.execute_vision_cmd = None
         self.start_stop_vision = None
 

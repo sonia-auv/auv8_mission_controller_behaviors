@@ -7,7 +7,7 @@ from proc_control.srv import SetPositionTarget
 class MoveSpeed(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
         self.set_local_target = None
 
         self.target_reached = False

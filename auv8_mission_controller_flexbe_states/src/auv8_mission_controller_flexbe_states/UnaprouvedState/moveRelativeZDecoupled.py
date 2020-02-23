@@ -8,7 +8,7 @@ from proc_control.srv import SetDecoupledTarget
 class MoveRelativeZDecoupled(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
         self.target_reached = False
 
     def define_parameters(self):

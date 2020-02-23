@@ -7,7 +7,7 @@ from proc_actuators.srv import cmActionSrv, cmActionSrvRequest
 class Droppers(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
         self.start_time = None
         self.do_action = None
 

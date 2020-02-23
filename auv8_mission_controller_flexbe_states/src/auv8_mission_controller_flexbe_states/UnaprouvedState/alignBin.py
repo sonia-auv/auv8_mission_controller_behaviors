@@ -11,7 +11,7 @@ from proc_image_processing.msg import VisionTarget
 class AlignBin(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(AlignBin, self).__init__(outcomes=['continue', 'failed'])
         self.vision_subscriber = None
         self.target_reach_sub = None
         self.set_local_target = None

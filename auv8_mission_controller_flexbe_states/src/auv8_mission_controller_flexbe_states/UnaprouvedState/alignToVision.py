@@ -8,9 +8,8 @@ from proc_image_processing.msg import VisionTarget
 
 
 class AlignToVision(EventState):
-
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(AlignToVision, self)
         self.set_local_target = None
         self.vision_subscriber = None
         self.target_reach_sub = None

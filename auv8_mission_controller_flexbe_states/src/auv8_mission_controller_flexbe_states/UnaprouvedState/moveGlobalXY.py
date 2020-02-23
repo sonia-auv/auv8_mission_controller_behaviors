@@ -9,7 +9,7 @@ from nav_msgs.msg import Odometry
 class MoveXY(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
 
         self.position = None
         self.orientation = None

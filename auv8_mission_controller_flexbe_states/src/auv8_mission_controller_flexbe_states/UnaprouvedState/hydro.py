@@ -12,7 +12,7 @@ from nav_msgs.msg import Odometry
 class Hydro(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
         self.target_reached = False
 
     def define_parameters(self):

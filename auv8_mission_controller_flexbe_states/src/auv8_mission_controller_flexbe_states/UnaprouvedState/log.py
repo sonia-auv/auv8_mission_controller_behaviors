@@ -5,7 +5,7 @@ from controller_mission.srv import CurrentMission, CurrentMissionResponse
 class Log(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
         self.do_action = None
 
     def define_parameters(self):

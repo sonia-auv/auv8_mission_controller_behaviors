@@ -10,7 +10,7 @@ from proc_control.msg import TargetReached
 class ForwardHydro(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
         self.target_reached = False
 
     def define_parameters(self):
