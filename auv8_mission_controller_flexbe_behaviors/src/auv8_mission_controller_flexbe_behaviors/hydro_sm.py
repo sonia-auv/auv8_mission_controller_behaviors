@@ -54,7 +54,7 @@ class hydroSM(Behavior):
 
 
 		with _state_machine:
-			# x:178 y:136
+			# x:151 y:53
 			OperatableStateMachine.add('depth',
 										MoveZByStep(depth=1, step=0.5),
 										transitions={'continue': 'hydro', 'failed': 'failed'},
@@ -63,7 +63,13 @@ class hydroSM(Behavior):
 			# x:448 y:98
 			OperatableStateMachine.add('hydro',
 										Hydro(frequency=40),
-										transitions={'continue': 'finished', 'failed': 'failed'},
+										transitions={'continue': 'hydro_2', 'failed': 'failed'},
+										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
+
+			# x:486 y:248
+			OperatableStateMachine.add('hydro_2',
+										Hydro(frequency=40),
+										transitions={'continue': 'hydro', 'failed': 'finished'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
 
