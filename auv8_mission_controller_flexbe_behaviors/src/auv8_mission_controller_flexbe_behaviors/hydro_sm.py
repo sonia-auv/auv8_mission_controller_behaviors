@@ -66,7 +66,7 @@ class hydroSM(Behavior):
 										transitions={'continue': 'hydro_2', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
-			# x:486 y:248
+			# x:644 y:491
 			OperatableStateMachine.add('hydro_2',
 										Hydro(frequency=40),
 										transitions={'continue': 'hydro', 'failed': 'finished'},
