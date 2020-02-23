@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="hydro">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.hydro_sm" class="hydroSM" />
+	<tagstring>hydro</tagstring>
+	<author>fcr</author>
+	<date>Sat Feb 22 2020</date>
+	<description>
+		dsadadsa
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

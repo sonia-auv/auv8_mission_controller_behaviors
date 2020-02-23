@@ -21,9 +21,10 @@ class Hydro(EventState):
         rospy.wait_for_service('/proc_control/set_global_decoupled_target')
         self.set_global_target = rospy.ServiceProxy('/proc_control/set_global_decoupled_target', SetDecoupledTarget)
 
+        rospy.loginfo('try hydro srv')
         rospy.wait_for_service('/proc_mapping/pinger_location_service')
         self.pinger_location_service = rospy.ServiceProxy('/proc_mapping/pinger_location_service', PingerLocationService)
-
+        rospy.loginfo('succeed hydro srv')
         self.target_reached = 0
 
         try:
