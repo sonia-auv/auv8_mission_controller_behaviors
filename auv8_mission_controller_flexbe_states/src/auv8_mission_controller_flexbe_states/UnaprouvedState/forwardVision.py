@@ -9,7 +9,7 @@ from proc_image_processing.msg import VisionTarget
 class ForwardVision(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+        super(ForwardVision, self).__init__(outcomes=['continue', 'failed'])
         self.buoy_is_unreached = False
         self.target_reached = False
         self.victory = False

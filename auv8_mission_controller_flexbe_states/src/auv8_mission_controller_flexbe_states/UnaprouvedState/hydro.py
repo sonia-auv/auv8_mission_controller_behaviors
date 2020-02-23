@@ -11,17 +11,12 @@ from nav_msgs.msg import Odometry
 
 class Hydro(EventState):
 
-    def __init__(self):
-        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+    def __init__(self, frequency):
+        super(Hydro, self).__init__(outcomes=['continue', 'failed'])
         self.target_reached = False
+        self.param_frequency = frequency
 
-    def define_parameters(self):
-        self.parameters.append(Parameter('param_frequency', '$/mission_params/00_global/pinger_frequency', 'Pigner frequency'))
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
-
-    def target_reach_cb(self, data):
+       def target_reach_cb(self, data):
         self.target_reached = data.target_is_reached
 
     def on_enter(self, userdata):
@@ -55,7 +50,7 @@ class Hydro(EventState):
 
     def execute(self, userdata):
         if self.target_reached > 0:
-            return 'succeeded'
+            return 'continue'
         pass
 
         

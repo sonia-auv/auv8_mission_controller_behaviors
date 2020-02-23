@@ -7,7 +7,7 @@ from proc_actuators.srv import cmActionSrv, cmActionSrvRequest
 class Arm(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+        super(Arm, self).__init__(outcomes=['continue', 'failed'])
         self.start_time = None
         self.do_action = None
         self.action = cmActionSrvRequest()

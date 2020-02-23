@@ -9,7 +9,7 @@ from proc_image_processing.msg import VisionTarget
 
 class AlignToVision(EventState):
     def __init__(self):
-        super(AlignToVision, self)
+        super(AlignToVision, self).__init__(outcomes=['continue', 'failed'])
         self.set_local_target = None
         self.vision_subscriber = None
         self.target_reach_sub = None

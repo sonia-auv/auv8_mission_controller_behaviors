@@ -11,7 +11,7 @@ from nav_msgs.msg import Odometry
 
 class AlignBottomAlexFrank(EventState):
     def __init__(self):
-        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+        super(AlignBottomAlexFrank, self).__init__(outcomes=['continue', 'failed'])
 
         self.set_local_target = None
         self.vision_subscriber = None

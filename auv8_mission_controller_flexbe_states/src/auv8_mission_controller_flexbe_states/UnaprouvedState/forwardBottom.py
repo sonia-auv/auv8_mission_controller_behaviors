@@ -10,7 +10,7 @@ from nav_msgs.msg import Odometry
 class ForwardBottom(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+        super(ForwardBottom, self).__init__(outcomes=['continue', 'failed'])
         self.vision_is_unreached = False
         self.target_reached = False
         self.victory = False

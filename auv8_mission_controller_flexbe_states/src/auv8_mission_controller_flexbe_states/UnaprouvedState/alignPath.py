@@ -11,7 +11,7 @@ from proc_image_processing.msg import VisionTarget
 class AlignPath(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+        super(AlignPath, self).__init__(outcomes=['continue', 'failed'])
         self.vision_subscriber = None
         self.target_reach_sub = None
         self.set_local_target = None

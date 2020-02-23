@@ -8,7 +8,7 @@ from proc_control.srv import SetPositionTarget
 class MoveRelativeXY(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+        super(MoveRelativeXY, self).__init__(outcomes=['continue', 'failed'])
         self.set_local_target = None
         self.target_reach_sub = None
 

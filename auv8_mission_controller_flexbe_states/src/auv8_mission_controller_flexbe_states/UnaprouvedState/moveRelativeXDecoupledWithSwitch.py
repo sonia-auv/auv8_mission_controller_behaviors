@@ -8,7 +8,7 @@ from proc_control.srv import SetDecoupledTarget, SetControlMode, SetControlModeR
 class MoveRelativeXDecoupledWithSwitch(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+        super(MoveRelativeXDecoupledWithSwitch, self).__init__(outcomes=['continue', 'failed'])
         self.target_reached = False
 
         self.mode = SetControlModeRequest()
@@ -16,9 +16,6 @@ class MoveRelativeXDecoupledWithSwitch(EventState):
 
     def define_parameters(self):
         self.parameters.append(Parameter('param_distance_x', 1.0, 'Distance to travel'))
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
 
     def target_reach_cb(self, data):
         self.target_reached = data.target_is_reached
