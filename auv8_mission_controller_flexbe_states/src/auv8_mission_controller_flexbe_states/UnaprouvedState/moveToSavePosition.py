@@ -9,7 +9,7 @@ from nav_msgs.msg import Odometry
 class MoveToSavePosition(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(MoveToSavePosition, self)
 
         self.set_global_target = None
         self.target_reach_sub = None

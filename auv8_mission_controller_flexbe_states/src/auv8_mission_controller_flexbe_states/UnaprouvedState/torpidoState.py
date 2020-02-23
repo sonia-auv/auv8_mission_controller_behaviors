@@ -7,7 +7,7 @@ from proc_actuators.srv import cmActionSrv, cmActionSrvRequest
 class Torpido(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(Torpido, self)
         self.start_time = None
         self.do_action = None
 

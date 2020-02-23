@@ -10,7 +10,7 @@ import math
 class MoveYawHydro(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(MoveYawHydro, self)
         self.target_reached = False
         self.set_local_target = None
         self.pinger_location = None

@@ -29,5 +29,5 @@ class Droppers(EventState):
         rospy.loginfo('Dropper : %i is launch' % int(self.param_id))
         return 'continue'
 
-    def end(self):
+    def end(self, userdata):
         pass

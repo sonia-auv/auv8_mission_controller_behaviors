@@ -7,7 +7,7 @@ from proc_mapping.srv import ObjectiveReset
 class ResetMappingObjective(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(ResetMappingObjective, self)
 
     def define_parameters(self):
         self.parameters.append(Parameter('param_objective_type', 2, 'Type'))

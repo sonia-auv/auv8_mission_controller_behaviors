@@ -9,7 +9,7 @@ import math
 class MoveSpeedToPosition(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+        super(MoveSpeedToPosition, self).__init__(outcomes=['continue', 'failed'])
         self.set_local_target = None
         self.odom = None
         self.position = None

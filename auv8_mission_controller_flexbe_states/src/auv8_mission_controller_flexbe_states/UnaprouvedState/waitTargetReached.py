@@ -11,7 +11,7 @@ from nav_msgs.msg import Odometry
 class WaitTargetReached(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(WaitTargetReached, self)
 
     def define_parameters(self):
         pass

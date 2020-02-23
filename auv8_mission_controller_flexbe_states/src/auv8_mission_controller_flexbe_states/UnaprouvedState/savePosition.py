@@ -7,7 +7,7 @@ from nav_msgs.msg import Odometry
 class SavePosition(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(SavePosition, self)
 
         self.odom =None
         self.position = None

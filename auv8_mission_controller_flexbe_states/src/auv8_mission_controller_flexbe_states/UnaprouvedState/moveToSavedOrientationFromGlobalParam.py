@@ -9,7 +9,7 @@ from nav_msgs.msg import Odometry
 class MoveToSavedOrientationFromGlobalParam(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+        super(MoveToSavedOrientationFromGlobalParam, self).__init__(outcomes=['continue', 'failed'])
 
         self.set_global_target = None
         self.target_reach_sub = None

@@ -9,7 +9,7 @@ from proc_control.srv import SetDecoupledTarget
 class WaitHitCountTargetForRandomPinger(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(WaitHitCountTargetForRandomPinger, self)
         self.set_local_target = None
         self.vision_subscriber = None
         self.vision_deepLearning = None

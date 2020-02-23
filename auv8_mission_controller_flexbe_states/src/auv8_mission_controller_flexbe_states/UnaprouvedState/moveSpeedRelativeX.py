@@ -9,7 +9,7 @@ import math
 class MoveRelativeSpeedX(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+        super(MoveRelativeSpeedX, self).__init__(outcomes=['continue', 'failed'])
         self.set_local_target = None
         self.odom = None
         self.first_position = None

@@ -7,7 +7,7 @@ import time
 class SaveOrientation(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(SaveOrientation, self)
 
         self.odom = None
         self.orientation = None

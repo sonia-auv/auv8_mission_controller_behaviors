@@ -1,12 +1,10 @@
 import rospy
 import math
 
-from Queue import deque
 from flexbe_core import EventState, Logger
 from proc_mapping.srv import PingerLocationService
 from proc_control.srv import SetDecoupledTarget
 from proc_control.msg import TargetReached
-from nav_msgs.msg import Odometry
 
 
 class Hydro(EventState):
@@ -16,7 +14,7 @@ class Hydro(EventState):
         self.target_reached = False
         self.param_frequency = frequency
 
-       def target_reach_cb(self, data):
+    def target_reach_cb(self, data):
         self.target_reached = data.target_is_reached
 
     def on_enter(self, userdata):
@@ -53,7 +51,6 @@ class Hydro(EventState):
             return 'continue'
         pass
 
-        
-    def end(self):
+    def end(self, userdata):
         self.target_reach_sub.unregister()
         pass

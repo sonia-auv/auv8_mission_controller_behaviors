@@ -10,7 +10,8 @@ from proc_image_processing.msg import VisionTarget
 
 class AlignBin(EventState):
 
-    def __init__(self):
+    def __init__(self, param_bounding_box, param_yaw_bounding_box, param_vision_target_width_in_meter, param_vision_target_height_in_meter, \
+                 param_max_queue_size, param_control_bounding_box_in_y, param_nb_pixel_to_victory):
         super(AlignBin, self).__init__(outcomes=['continue', 'failed'])
         self.vision_subscriber = None
         self.target_reach_sub = None

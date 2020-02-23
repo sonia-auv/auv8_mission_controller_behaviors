@@ -6,7 +6,7 @@ from flexbe_core import EventState, Logger
 class TimesOut(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(TimesOut, self)
         self.start_time = None
         self.current_second = 0
 

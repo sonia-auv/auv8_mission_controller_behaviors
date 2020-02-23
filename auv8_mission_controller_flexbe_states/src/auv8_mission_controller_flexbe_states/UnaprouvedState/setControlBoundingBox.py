@@ -7,7 +7,7 @@ from proc_control.srv import SetBoundingBox, ResetBoundingBox
 class SetControlBoundingBox(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(SetControlBoundingBox, self)
         self.set_bounding_box = None
         self.reset_bounding_box = None
 

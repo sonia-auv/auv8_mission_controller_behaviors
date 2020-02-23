@@ -7,7 +7,7 @@ from proc_navigation.srv import SetDepthOffset
 class SetDepthOfSet(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(SetDepthOfSet, self)
         self.set_initial_depth = None
 
     def define_parameters(self):

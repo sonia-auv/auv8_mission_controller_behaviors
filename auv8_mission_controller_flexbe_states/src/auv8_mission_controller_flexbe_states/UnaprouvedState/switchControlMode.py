@@ -6,7 +6,7 @@ from proc_control.srv import SetControlMode, SetControlModeRequest, SetDecoupled
 class Switch(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(Switch, self)
         self.start_time = None
         self.set_mode = None
 

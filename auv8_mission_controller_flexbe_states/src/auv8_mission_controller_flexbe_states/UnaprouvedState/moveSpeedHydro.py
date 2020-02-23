@@ -9,7 +9,7 @@ import math
 class MoveSpeedHydro(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+        super(MoveSpeedHydro, self).__init__(outcomes=['continue', 'failed'])
         self.set_local_target = None
         self.pinger_location = None
         self.heading = None

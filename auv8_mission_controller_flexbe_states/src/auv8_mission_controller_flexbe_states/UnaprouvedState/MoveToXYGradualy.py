@@ -10,7 +10,7 @@ import math
 class MoveToXYGradualy(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(MoveToXYGradualy, self)
 
         self.position = None
         self.orientation = None

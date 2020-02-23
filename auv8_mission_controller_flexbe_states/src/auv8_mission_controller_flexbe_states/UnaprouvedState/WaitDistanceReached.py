@@ -9,7 +9,7 @@ import math
 class WaitDistanceReached(EventState):
 
     def __init__(self):
-        super(RotateYawRelative, self)
+        super(WaitDistanceReached, self)
         self.set_local_target = None
         self.odom = None
         self.first_position = None
