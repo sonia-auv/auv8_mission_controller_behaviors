@@ -30,5 +30,5 @@ class SavePosition(EventState):
             ud.generic_data_field_1 = position
             return 'succeeded'
 
-    def end(self):
+    def on_exit(self, userdata):
         self.odom.unregister()

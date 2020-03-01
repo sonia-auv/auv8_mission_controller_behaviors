@@ -34,5 +34,5 @@ class LostVision(EventState):
         if time.time() - self.last_target_received_time > self.param_max_time_lost_in_sec:
             return 'succeeded'
 
-    def end(self):
+    def on_exit(self, userdata):
         self.vision_subscriber.unregister()

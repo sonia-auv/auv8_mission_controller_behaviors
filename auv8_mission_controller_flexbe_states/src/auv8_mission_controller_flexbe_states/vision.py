@@ -9,8 +9,6 @@ from provider_vision.srv import start_stop_media
 
 class LaunchVision(EventState):
     """
-        I need to do this
-
         -- param_node_name      string Detection task
         -- camera_no uint8      Enter 1:Front 2:Bottom
         -- param_cmd uint8      Enter 1:Open  2:Close
@@ -57,5 +55,5 @@ class LaunchVision(EventState):
     def execute(self, userdata):
         return 'continue'
 
-    def end(self, userdata):
+    def on_exit(self, userdata):
         pass

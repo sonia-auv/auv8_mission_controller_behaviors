@@ -51,5 +51,5 @@ class MoveSpeedHydro(EventState):
     def execute(self, userdata):
         pass
 
-    def end(self):
+    def on_exit(self, userdata):
         self.pinger_location.unregister()

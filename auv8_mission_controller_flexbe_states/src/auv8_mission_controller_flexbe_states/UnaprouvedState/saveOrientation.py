@@ -31,5 +31,5 @@ class SaveOrientation(EventState):
         rospy.loginfo("Orientation saved : {}".format(orientation))
         return 'succeeded'
 
-    def end(self):
+    def on_exit(self, userdata):
         self.odom.unregister()

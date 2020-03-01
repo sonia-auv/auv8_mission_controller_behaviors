@@ -209,9 +209,6 @@ class AlignToVisionTest(EventState):
         rospy.loginfo('Set relative position z = %f' % position_z)
         rospy.loginfo('Set relative position yaw = %f' % position_yaw)
 
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
-
-    def end(self):
+    def on_exit(self, userdata):
         self.vision_subscriber.unregister()
         self.target_reach_sub.unregister()

@@ -33,5 +33,5 @@ class Log(EventState):
 
         return 'succeeded'
 
-    def end(self):
+    def on_exit(self, userdata):
         pass

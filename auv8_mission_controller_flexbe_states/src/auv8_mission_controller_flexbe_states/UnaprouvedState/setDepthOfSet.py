@@ -27,5 +27,5 @@ class SetDepthOfSet(EventState):
     def execute(self, userdata):
         return 'succeeded'
 
-    def end(self):
+    def on_exit(self, userdata):
         pass

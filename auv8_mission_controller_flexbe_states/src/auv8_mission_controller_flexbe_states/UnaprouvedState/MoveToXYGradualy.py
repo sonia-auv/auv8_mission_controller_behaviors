@@ -77,7 +77,7 @@ class MoveToXYGradualy(EventState):
         if self.target_reached > 0:
             return 'succeeded'
 
-    def end(self):
+    def on_exit(self, userdata):
         if self.target_reach_sub != None:
             self.target_reach_sub.unregister()
         self.current_position.unregister()

@@ -78,5 +78,5 @@ class MoveRelativeSpeedX(EventState):
                 rospy.loginfo('Service did not process request: ' + str(exc))
             return 'succeeded'
 
-    def end(self):
+    def on_exit(self, userdata):
         self.odom.unregister()

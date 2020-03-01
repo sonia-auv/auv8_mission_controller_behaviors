@@ -58,5 +58,5 @@ class WaitDistanceReached(EventState):
         if distance >= self.param_distance_x:
             return 'succeeded'
 
-    def end(self):
+    def on_exit(self, userdata):
         self.odom.unregister()

@@ -36,5 +36,5 @@ class TimesOut(EventState):
         if time >= self.param_time:
             return str(self.param_to_return)
 
-    def end(self):
+    def on_exit(self, userdata):
         pass

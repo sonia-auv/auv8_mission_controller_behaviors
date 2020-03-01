@@ -175,6 +175,6 @@ class AlignBin(EventState):
             self.set_target(0.0, 0.0, 0.0)
             return 'forward'
 
-    def end(self):
+    def on_exit(self, userdata):
         self.vision_subscriber.unregister()
         self.target_reach_sub.unregister()

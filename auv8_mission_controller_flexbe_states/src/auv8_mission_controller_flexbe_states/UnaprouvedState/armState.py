@@ -38,5 +38,5 @@ class Arm(EventState):
         rospy.loginfo('arm : %i is executed' % int(self.param_id))
         return 'succeeded'
 
-    def end(self):
+    def on_exit(self, userdata):
         pass

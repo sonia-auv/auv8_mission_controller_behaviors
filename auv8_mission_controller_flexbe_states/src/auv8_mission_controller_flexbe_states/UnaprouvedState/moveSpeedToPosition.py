@@ -113,5 +113,5 @@ class MoveSpeedToPosition(EventState):
             self.last_yaw_update_time = rospy.get_rostime()
 
 
-    def end(self):
+    def on_exit(self, userdata):
         self.odom.unregister()

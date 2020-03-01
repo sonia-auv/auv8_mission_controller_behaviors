@@ -66,6 +66,6 @@ class MoveXY(EventState):
         if self.target_reached > 0:
             return 'succeeded'
 
-    def end(self):
+    def on_exit(self, userdata):
         self.target_reach_sub.unregister()
         self.current_position.unregister()

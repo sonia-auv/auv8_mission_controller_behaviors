@@ -66,7 +66,7 @@ class MoveYawHydro(EventState):
             return 'succeeded'
 	pass
 
-    def end(self):
+    def on_exit(self, userdata):
         self.pinger_location.unregister()
         self.target_reach_sub.unregister()
 

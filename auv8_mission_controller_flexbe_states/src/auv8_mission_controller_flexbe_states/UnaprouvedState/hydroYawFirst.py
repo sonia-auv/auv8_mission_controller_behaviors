@@ -84,6 +84,6 @@ class HydroYawFirst(EventState):
         pass
 
         
-    def end(self):
+    def on_exit(self, userdata):
         self.target_reach_sub.unregister()
         pass

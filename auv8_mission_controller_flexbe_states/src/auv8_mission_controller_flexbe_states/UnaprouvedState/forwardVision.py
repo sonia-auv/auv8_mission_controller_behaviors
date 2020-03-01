@@ -86,6 +86,6 @@ class ForwardVision(EventState):
             self.set_target(0.0)
             return 'aborted'
 
-    def end(self):
+    def on_exit(self, userdata):
         self.buoy_position.unregister()
         self.target_reach_sub.unregister()

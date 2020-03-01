@@ -42,6 +42,6 @@ from flexbe_core import EventState, Logger
 #             self.set_target(0.0, 0.0, 0.0)
 #             return 'succeeded'
 
-#     def end(self):
+#     def on_exit(self, userdata):
 #         self.vision_subscriber.unregister()
 

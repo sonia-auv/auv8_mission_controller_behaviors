@@ -8,8 +8,8 @@ from proc_image_processing.msg import VisionTarget
 
 
 class AlignToVision(EventState):
-    def __init__(self):
-        super(AlignToVision, self).__init__(outcomes=['continue', 'failed'])
+    def __init__(self, bonding_box_in_pixel, target_width_in_meter, topic_to_listen, pixel_to_victory, nb_max_align, max_queue_size, control_bonding_box_y):
+        super(AlignToVision, self).__init__(outcomes=['continue', 'failed', 'forward'])
         self.set_local_target = None
         self.vision_subscriber = None
         self.target_reach_sub = None
@@ -34,23 +34,15 @@ class AlignToVision(EventState):
         self.vision_x_pixel = None
         self.vision_y_pixel = None
 
+        self.param_bonding_bax = bonding_box_in_pixel
+        self.param_vision_target_width_in_meter = target_width_in_meter
+        self.param_topic_to_listen = topic_to_listen
+        self.param_nb_pixel_to_victory = pixel_to_victory
+        self.param_maximum_nb_alignment = nb_max_align
+        self.param_max_queue_size = max_queue_size
+        self.param_control_bounding_box_in_y = control_bonding_box_y
+
         self.count = 0
-
-    def define_parameters(self):
-        self.parameters.append(Parameter('param_bounding_box', 200, 'bounding box in pixel'))
-        self.parameters.append(Parameter('param_color', 'red', 'color of object to align'))
-        self.parameters.append(Parameter('param_threshold_width', 100, 'maximum nb of pixel to align with heading'))
-        self.parameters.append(Parameter('param_heading', 10, 'Yaw rotation to align vision'))
-        self.parameters.append(Parameter('param_vision_target_width_in_meter', 0.23, 'transform pixel to meter'))
-        self.parameters.append(Parameter('param_topic_to_listen', '/proc_image_processing/buoy_red', 'Name of topic to listen'))
-        self.parameters.append(Parameter('param_nb_pixel_to_victory', 300, 'Minimal nb of pixel to ram'))
-        self.parameters.append(Parameter('param_maximum_nb_alignment', 4, 'Maximum number of alignment'))
-        self.parameters.append(Parameter('param_max_queue_size', 10, 'Maximum size of queue'))
-        self.parameters.append(Parameter('param_control_bounding_box_in_y', 0.5, 'Control bounding box in y'))
-        self.parameters.append(Parameter('param_check_vision_reach', False, 'Maximum size of queue'))
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'forward', 'preempted']
 
     def target_reach_cb(self, data):
         self.target_reached = data.target_is_reached
@@ -82,11 +74,6 @@ class AlignToVision(EventState):
             if width >= self.param_nb_pixel_to_victory:
                 self.victory = True
 
-            if width <= self.param_threshold_width:
-                self.is_align_with_heading_active = True
-            else:
-                self.is_align_with_heading_active = False
-
             if abs(self.averaging_vision_x_pixel) <= self.param_bounding_box:
                 self.vision_is_reach_y = True
             else:
@@ -112,13 +99,7 @@ class AlignToVision(EventState):
 
         target_z = 0.1 * (vision_position_z / abs(vision_position_z))
 
-        if self.is_align_with_heading_active:
-            if not self.vision_is_reach_y:
-                self.heading = self.param_heading * (self.vision_position_y / abs(self.vision_position_y))
-                rospy.logdebug('set_target : 1 - align_submarine')
-                self.set_target(0.0, target_z, self.heading, True, False, False)
-
-        elif not self.vision_is_reach:
+        if not self.vision_is_reach:
             rospy.logdebug('set_target : 2 - align_submarine')
             self.set_target(vision_position_y, target_z, 0.0, False, False, True)
 
@@ -154,9 +135,6 @@ class AlignToVision(EventState):
         self.count += 1
 
     def execute(self, userdata):
-        if self.is_align_with_heading_active and self.vision_is_reach_y:
-            rospy.logdebug('set_target : 1 - run')
-            self.set_target(0.0, 0.0, 0.0, False, False, False)
 
         self.vision_is_reach = self.vision_is_reach_y and self.vision_is_reach_z
 
@@ -166,7 +144,7 @@ class AlignToVision(EventState):
             rospy.loginfo('Pixel Vision in y : %f', self.averaging_vision_y_pixel)
             rospy.logdebug('set_target : 2 - run')
             self.set_target(0.0, 0.0, 0.0, False, False, False)
-            return 'succeeded'
+            return 'continue'
 
         if self.vision_is_reach:
             rospy.logdebug('set_target : 2 - run')
@@ -174,8 +152,8 @@ class AlignToVision(EventState):
             return 'forward'
 
         if self.count >= self.param_maximum_nb_alignment:
-            return 'aborted'
+            return 'failed'
 
-    def end(self):
+    def on_exit(self, userdata):
         self.vision_subscriber.unregister()
         self.target_reach_sub.unregister()

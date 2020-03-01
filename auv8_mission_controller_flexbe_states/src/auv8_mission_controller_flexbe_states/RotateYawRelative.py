@@ -45,5 +45,5 @@ class RotateYawRelative(EventState):
         if self.target_reached > 0:
             return 'continue'
 
-    def end(self, userdata):
+    def on_exit(self, userdata):
         self.target_reach_sub.unregister()

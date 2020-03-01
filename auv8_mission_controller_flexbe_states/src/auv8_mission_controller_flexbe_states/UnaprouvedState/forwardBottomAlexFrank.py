@@ -169,7 +169,7 @@ class ForwardBottomAlexFrank(EventState):
         rospy.loginfo('Moved distance (vision): %f' % self.moved_distance_from_vision)
         rospy.loginfo('Moved distance (odom): %f' % self.moved_distance_from_odom)
 
-    def end(self):
+    def on_exit(self, userdata):
         self.buoy_position.unregister()
         self.target_reach_sub.unregister()
 

@@ -136,6 +136,6 @@ class AlignXYVision(EventState):
             self.set_target(0.0, 0.0)
             return 'succeeded'
 
-    def end(self):
+    def on_exit(self, userdata):
         self.vision_subscriber.unregister()
         self.target_reach_sub.unregister()
