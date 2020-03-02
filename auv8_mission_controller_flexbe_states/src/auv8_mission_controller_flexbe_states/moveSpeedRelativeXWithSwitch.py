@@ -8,7 +8,7 @@ import math
 
 class MoveRelativeSpeedXWithSwitch(EventState):
 
-    def __init__(self):
+    def __init__(self, distance, speed, yaw):
         super(MoveRelativeSpeedXWithSwitch, self).__init__(outcomes=['continue', 'failed'])
         self.set_local_target = None
         self.odom = None
@@ -18,13 +18,9 @@ class MoveRelativeSpeedXWithSwitch(EventState):
         self.mode = SetControlModeRequest()
         self.mode_dic = {'0': self.mode.PositionModePID, '1': self.mode.PositionModePPI, '2': self.mode.VelocityModeB}
 
-    def define_parameters(self):
-        self.parameters.append(Parameter('param_distance_x', 1.0, 'Distance to travel'))
-        self.parameters.append(Parameter('param_speed_x', 1.0, 'Speed to use while traveling'))
-        self.parameters.append(Parameter('param_orientation_yaw', 0.0, 'Heading'))
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
+        self.param_distance_x = distance
+        self.param_speed_x = speed
+        self.param_orientation_yaw = yaw
 
     def on_enter(self, userdata):
 
