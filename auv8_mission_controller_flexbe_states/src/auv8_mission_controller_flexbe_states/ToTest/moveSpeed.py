@@ -2,6 +2,7 @@ import rospy
 
 from flexbe_core import EventState, Logger
 from proc_control.srv import SetPositionTarget
+from time import time
 
 
 class MoveSpeed(EventState):

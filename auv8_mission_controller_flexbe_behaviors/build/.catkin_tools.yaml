@@ -1,6 +1,6 @@
-devel_space: /home/francois/Workspaces/ros_sonia_ws/src/auv8_mission_controller_behaviors/auv8_mission_controller_flexbe_behaviors/devel
+devel_space: /home/francois/Workspaces/ros_sonia_ws/src/auv8_mission_controller_flexbe_behaviors/devel
 install: false
-install_space: /home/francois/Workspaces/ros_sonia_ws/src/auv8_mission_controller_behaviors/auv8_mission_controller_flexbe_behaviors/install
+install_space: /home/francois/Workspaces/ros_sonia_ws/src/auv8_mission_controller_flexbe_behaviors/install
 profile: default
-source_space: /home/francois/Workspaces/ros_sonia_ws/src/auv8_mission_controller_behaviors/auv8_mission_controller_flexbe_behaviors/src
-workspace: /home/francois/Workspaces/ros_sonia_ws/src/auv8_mission_controller_behaviors/auv8_mission_controller_flexbe_behaviors
+source_space: /home/francois/Workspaces/ros_sonia_ws/src/auv8_mission_controller_flexbe_behaviors/src
+workspace: /home/francois/Workspaces/ros_sonia_ws/src/auv8_mission_controller_flexbe_behaviors
