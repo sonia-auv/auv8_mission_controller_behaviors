@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="infinit_speed">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.infinit_speed_sm" class="infinit_speedSM" />
+	<tagstring>speed</tagstring>
+	<author>fcr</author>
+	<date>Mon Mar 02 2020</date>
+	<description>
+		speed w time but time not implemeted /bug
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>
