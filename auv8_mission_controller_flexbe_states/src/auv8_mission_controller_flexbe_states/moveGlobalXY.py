@@ -8,19 +8,15 @@ from nav_msgs.msg import Odometry
 
 class MoveXY(EventState):
 
-    def __init__(self):
+    def __init__(self, positionX, positionY):
         super(MoveXY, self).__init__(outcomes=['continue', 'failed'])
 
         self.position = None
         self.orientation = None
         self.target_reached = False
 
-    def define_parameters(self):
-        self.parameters.append(Parameter('param_distance_x', 1.0, 'Distance to travel'))
-        self.parameters.append(Parameter('param_distance_y', 1.0, 'Distance to travel'))
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
+        self.param_distance_x = positionX
+        self.param_distance_y = positionY
 
     def target_reach_cb(self, data):
         self.target_reached = data.target_is_reached
@@ -56,6 +52,7 @@ class MoveXY(EventState):
             self.target_reached = False
         except rospy.ServiceException as exc:
             rospy.loginfo('Service did not process request: ' + str(exc))
+            return 'failed'
 
         rospy.loginfo('Set position x = %f' % self.param_distance_x)
         rospy.loginfo('Set position y = %f' % self.param_distance_y)
@@ -64,7 +61,7 @@ class MoveXY(EventState):
 
     def execute(self, userdata):
         if self.target_reached > 0:
-            return 'succeeded'
+            return 'continue'
 
     def on_exit(self, userdata):
         self.target_reach_sub.unregister()
