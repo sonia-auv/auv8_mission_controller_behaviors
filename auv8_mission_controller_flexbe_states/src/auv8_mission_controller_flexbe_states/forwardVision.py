@@ -8,8 +8,8 @@ from proc_image_processing.msg import VisionTarget
 
 class ForwardVision(EventState):
 
-    def __init__(self):
-        super(ForwardVision, self).__init__(outcomes=['continue', 'failed'])
+    def __init__(self, distance_forward=1, initial_bondingBox=600, final_bondingBox=100, threshold_width=100, target_width=0.3, pixel_victory=400, topic_to_listen):
+        super(ForwardVision, self).__init__(outcomes=['continue', 'failed','lost'])
         self.buoy_is_unreached = False
         self.target_reached = False
         self.victory = False
@@ -20,19 +20,13 @@ class ForwardVision(EventState):
 
         self.adjust_bounding_box = 0.0
         self.initial_bounding_box = 0.0
-
-    def define_parameters(self):
-        self.parameters.append(Parameter('param_color', 'red', 'color of object to align'))
-        self.parameters.append(Parameter('param_distance_x', 1, 'Target'))
-        self.parameters.append(Parameter('param_initial_bounding_box', 600, 'Initial bounding Box'))
-        self.parameters.append(Parameter('param_final_bounding_box', 100, 'Final bounding Box'))
-        self.parameters.append(Parameter('param_threshold_width', 100, 'maximum nb of pixel to align with heading'))
-        self.parameters.append(Parameter('param_vision_target_width_in_meter', 0.23, 'Target'))
-        self.parameters.append(Parameter('param_nb_pixel_to_victory', 300, 'minimal nb of pixel to ram'))
-        self.parameters.append(Parameter('param_topic_to_listen', '/proc_image_processing/buoy_red', 'Name of topic to listen'))
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
+	self.param_distance_x = distance_forward
+	self.param_initial_bounding_box = initial_bondingBox
+	self.param_final_bounding_box = final_bondingBox
+	self.param_threshold_width = threshold_width
+	self.param_vision_target_width_in_meter = target_width
+	self.param_nb_pixel_to_victory = pixel_victory
+	self.param_topic_to_listen = topic_to_listen
 
     def vision_cb(self, vision_data):
 
@@ -53,6 +47,7 @@ class ForwardVision(EventState):
                                   False, True, True, True, True, True)
         except rospy.ServiceException as exc:
             rospy.loginfo('Service did not process request: ' + str(exc))
+	    return 'failed'
 
         rospy.loginfo('Set relative position x = %f' % position_x)
         rospy.loginfo('Set relative position yaw = %f' % 0.0)
@@ -80,11 +75,11 @@ class ForwardVision(EventState):
 
         if self.victory:
             self.set_target(0.0)
-            return 'succeeded'
+            return 'continue'
 
         if self.buoy_is_unreached or self.target_reached:
             self.set_target(0.0)
-            return 'aborted'
+            return 'lost'
 
     def on_exit(self, userdata):
         self.buoy_position.unregister()

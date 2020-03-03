@@ -5,7 +5,7 @@ from flexbe_core import EventState, Logger
 
 class TimesOut(EventState):
 
-    def __init__(self, duration):
+    def __init__(self, duration=10):
         super(TimesOut, self).__init__(outcomes=['continue', 'failed'])
         self.start_time = None
         self.current_second = 0

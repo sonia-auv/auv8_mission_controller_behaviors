@@ -7,7 +7,7 @@ from proc_control.srv import SetPositionTarget
 
 class MoveRelativeZ(EventState):
 
-    def __init__(self):
+    def __init__(self, distance):
         super(MoveRelativeZ, self).__init__(outcomes=['continue', 'failed'])
         self.set_local_target = None
         self.target_reach_sub = None
@@ -16,12 +16,7 @@ class MoveRelativeZ(EventState):
         self.actual_position_y = 0.0
         self.just_one_time = 0
         self.target_reached = False
-
-    def define_parameters(self):
-        self.parameters.append(Parameter('param_distance_z', 1.0, 'Distance to travel'))
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
+        self.param_distance_z = distance
 
     def target_reach_cb(self, data):
         self.target_reached = data.target_is_reached
@@ -41,12 +36,13 @@ class MoveRelativeZ(EventState):
                                   0.0)
         except rospy.ServiceException as exc:
             rospy.loginfo('Service did not process request: ' + str(exc))
+            return 'failed'
 
         rospy.loginfo('Set relative position z = %f' % self.param_distance_z)
 
     def execute(self, userdata):
         if self.target_reached > 0:
-            return 'succeeded'
+            return 'continue'
 
     def on_exit(self, userdata):
         self.target_reach_sub.unregister()

@@ -8,18 +8,13 @@ import math
 
 class WaitDistanceReached(EventState):
 
-    def __init__(self):
-        super(WaitDistanceReached, self)
+    def __init__(self, distance):
+        super(WaitDistanceReached, self).__init__(outcomes=['continue', 'failed'])
         self.set_local_target = None
         self.odom = None
         self.first_position = None
         self.position = None
-
-    def define_parameters(self):
-        self.parameters.append(Parameter('param_distance_x', 1.0, 'Distance to travel before succeeded'))
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
+	self.param_distance_x = distance
 
     def on_enter(self, userdata):
         self.first_position = None
@@ -48,7 +43,7 @@ class WaitDistanceReached(EventState):
     def execute(self, userdata):
         # Check if both position are set. If not, check pass
         if self.first_position is None or self.position is None:
-            return
+            return 'failed'
 
         x = self.first_position.x - self.position.x
         y = self.first_position.y - self.position.y
@@ -56,7 +51,7 @@ class WaitDistanceReached(EventState):
         distance = math.sqrt(x * x + y * y)
 
         if distance >= self.param_distance_x:
-            return 'succeeded'
+            return 'continue'
 
     def on_exit(self, userdata):
         self.odom.unregister()

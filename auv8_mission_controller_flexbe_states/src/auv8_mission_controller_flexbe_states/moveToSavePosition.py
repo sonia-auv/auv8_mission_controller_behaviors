@@ -9,19 +9,13 @@ from nav_msgs.msg import Odometry
 class MoveToSavePosition(EventState):
 
     def __init__(self):
-        super(MoveToSavePosition, self)
+        super(MoveToSavePosition, self).__init__(outcomes=['continue', 'failed'])
 
         self.set_global_target = None
         self.target_reach_sub = None
         self.target_reached = None
 
         self.just_one_time = None
-
-    def define_parameters(self):
-        pass
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
 
     def target_reach_cb(self, data):
         self.target_reached = data.target_is_reached
@@ -38,6 +32,7 @@ class MoveToSavePosition(EventState):
             self.target_reached = False
         except rospy.ServiceException as exc:
             rospy.loginfo('Service did not process request: ' + str(exc))
+            return 'failed'
 
         rospy.loginfo('Set position x = %f' % data.position.x)
         rospy.loginfo('Set position y = %f' % data.position.y)
@@ -60,7 +55,7 @@ class MoveToSavePosition(EventState):
         self.just_one_time = False
 
         if self.target_reached > 0:
-            return 'succeeded'
+            return 'continue'
 
     def on_exit(self, userdata):
         self.target_reach_sub.unregister()

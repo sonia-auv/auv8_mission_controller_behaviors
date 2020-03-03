@@ -7,16 +7,10 @@ from nav_msgs.msg import Odometry
 class SavePosition(EventState):
 
     def __init__(self):
-        super(SavePosition, self)
+        super(SavePosition, self).__init__(outcomes=['continue'])
 
         self.odom =None
         self.position = None
-
-    def define_parameters(self):
-        pass
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
 
     def odom_cb(self, odom_data):
         self.position = odom_data.pose.pose
@@ -28,7 +22,7 @@ class SavePosition(EventState):
         position = self.position
         if position is not None:
             ud.generic_data_field_1 = position
-            return 'succeeded'
+            return 'continue'
 
     def on_exit(self, userdata):
         self.odom.unregister()

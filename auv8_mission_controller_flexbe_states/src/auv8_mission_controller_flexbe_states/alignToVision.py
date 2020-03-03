@@ -8,7 +8,7 @@ from proc_image_processing.msg import VisionTarget
 
 
 class AlignToVision(EventState):
-    def __init__(self, bonding_box_in_pixel, target_width_in_meter, topic_to_listen, pixel_to_victory, nb_max_align, max_queue_size, control_bonding_box_y):
+    def __init__(self, bonding_box_in_pixel=200, target_width_in_meter, topic_to_listen, pixel_to_victory, nb_max_align=10, max_queue_size=10, control_bonding_box_y):
         super(AlignToVision, self).__init__(outcomes=['continue', 'failed', 'forward'])
         self.set_local_target = None
         self.vision_subscriber = None

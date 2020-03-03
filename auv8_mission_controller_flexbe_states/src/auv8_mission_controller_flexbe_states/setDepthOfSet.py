@@ -7,14 +7,8 @@ from proc_navigation.srv import SetDepthOffset
 class SetDepthOfSet(EventState):
 
     def __init__(self):
-        super(SetDepthOfSet, self)
+        super(SetDepthOfSet, self).__init__(outcomes=['continue', 'failed'])
         self.set_initial_depth = None
-
-    def define_parameters(self):
-        pass
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
 
     def on_enter(self, userdata):
         rospy.wait_for_service('/proc_navigation/set_depth_offset', timeout=2)
@@ -23,9 +17,10 @@ class SetDepthOfSet(EventState):
             self.set_initial_depth()
         except rospy.ServiceException as err:
             rospy.logerr(err)
+	    return 'failed'
 
     def execute(self, userdata):
-        return 'succeeded'
+        return 'continue'
 
     def on_exit(self, userdata):
         pass
