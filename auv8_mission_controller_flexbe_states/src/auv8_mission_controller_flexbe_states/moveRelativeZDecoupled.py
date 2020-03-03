@@ -7,26 +7,24 @@ from proc_control.srv import SetDecoupledTarget
 
 class MoveRelativeZDecoupled(EventState):
 
-    def __init__(self):
+    def __init__(self, depth):
         super(MoveRelativeZDecoupled, self).__init__(outcomes=['continue', 'failed'])
         self.target_reached = False
-
-    def define_parameters(self):
-        self.parameters.append(Parameter('param_distance_z', 1.0, 'Distance to travel'))
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
+        self.param_distance_z = depth
+        rospy.loginfo('init done')
 
     def target_reach_cb(self, data):
         self.target_reached = data.target_is_reached
 
     def on_enter(self, userdata):
+        rospy.loginfo('begin on enter')
+
         self.target_reached = 0
         rospy.wait_for_service('/proc_control/set_local_decoupled_target')
         set_local_target = rospy.ServiceProxy('/proc_control/set_local_decoupled_target', SetDecoupledTarget)
-
+        rospy.loginfo('finish srv')
         try:
-            set_local_target(0.0, 0.0,self.param_distance_z,
+            set_local_target(0.0, 0.0,self.param_distance_z-0.3,
                              0.0, 0.0, 0.0,
                              True, True, False, True, True, True)
 
@@ -38,7 +36,7 @@ class MoveRelativeZDecoupled(EventState):
 
     def execute(self, userdata):
         if self.target_reached > 0:
-            return 'succeeded'
+            return 'continue'
 
     def on_exit(self, userdata):
         self.target_reach_sub.unregister()
