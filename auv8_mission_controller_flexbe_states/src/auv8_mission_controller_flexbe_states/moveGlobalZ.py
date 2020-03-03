@@ -14,7 +14,7 @@ class MoveZ(EventState):
         self.position = None
         self.orientation = None
         self.target_reached = False
-        self.param_distance_z - depth
+        self.param_distance_z = depth
 
     def target_reach_cb(self, data):
         self.target_reached = data.target_is_reached
