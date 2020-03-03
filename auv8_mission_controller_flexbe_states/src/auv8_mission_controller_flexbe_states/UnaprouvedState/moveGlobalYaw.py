@@ -8,18 +8,13 @@ from nav_msgs.msg import Odometry
 
 class MoveYaw(EventState):
 
-    def __init__(self):
+    def __init__(self, yaw):
         super(MoveYaw, self).__init__(outcomes=['continue', 'failed'])
 
         self.position = None
         self.orientation = None
         self.target_reached = False
-
-    def define_parameters(self):
-        self.parameters.append(Parameter('param_heading', 1.0, 'Distance to travel'))
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
+        self.param_heading = yaw
 
     def target_reach_cb(self, data):
         self.target_reached = data.target_is_reached
@@ -56,6 +51,7 @@ class MoveYaw(EventState):
             self.target_reached = False
         except rospy.ServiceException as exc:
             rospy.loginfo('Service did not process request: ' + str(exc))
+            return 'failed'
 
         rospy.loginfo('Set position Yaw = %f' % self.param_heading)
 
@@ -63,7 +59,7 @@ class MoveYaw(EventState):
 
     def execute(self, userdata):
         if self.target_reached > 0:
-            return 'succeeded'
+            return 'continue'
 
     def on_exit(self, userdata):
         self.target_reach_sub.unregister()
