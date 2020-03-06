@@ -9,7 +9,7 @@ from nav_msgs.msg import Odometry
 
 class ForwardBottom(EventState):
 
-    def __init__(self, distance_z = 0.5, bonding_box=200, depth_max = 1, pixel_to_victory = 200, topic_to_listen):
+    def __init__(self, topic_to_listen, distance_z=0.5, bonding_box=200, depth_max=1, pixel_to_victory=200):
         super(ForwardBottom, self).__init__(outcomes=['continue', 'failed', 'aborted'])
         self.vision_is_unreached = False
         self.target_reached = False
