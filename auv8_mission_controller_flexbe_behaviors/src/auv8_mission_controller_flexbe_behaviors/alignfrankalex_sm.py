@@ -9,7 +9,7 @@
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
 from auv8_mission_controller_flexbe_states.moveZByStep import MoveZByStep
-from auv8_mission_controller_flexbe_states.UnaprouvedState.alignAlexFrank import AlignAlexFrank
+from auv8_mission_controller_flexbe_states.alignAlexFrank import AlignAlexFrank
 from auv8_mission_controller_flexbe_states.vision import LaunchVision
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
