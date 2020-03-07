@@ -49,8 +49,8 @@ class ThrusterControlAuto(EventState):
     def __init__(self):
         super(ThrusterControlAuto, self).__init__(outcomes = ['continue', 'failed'])
         self.thruster_count = 8
-        self.thruster_min_effort = -30
-        self.thruster_max_effort = 30
+        self.thruster_min_effort = -35
+        self.thruster_max_effort = 35
         self.thruster_stop_effort = 0
         self.started = False
 
