@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="TestControlAuto">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.testcontrolauto_sm" class="TestControlAutoSM" />
+	<tagstring>Tag1</tagstring>
+	<author>Alex</author>
+	<date>Fri Mar 06 2020</date>
+	<description>
+		Test to control auto thruster effort control.
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>
