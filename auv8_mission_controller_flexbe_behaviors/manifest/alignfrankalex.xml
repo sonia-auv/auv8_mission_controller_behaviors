@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="alignFrankAlex">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.alignfrankalex_sm" class="alignFrankAlexSM" />
+	<tagstring>align</tagstring>
+	<author>fcr</author>
+	<date>Sat Mar 07 2020</date>
+	<description>
+		align front speed
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

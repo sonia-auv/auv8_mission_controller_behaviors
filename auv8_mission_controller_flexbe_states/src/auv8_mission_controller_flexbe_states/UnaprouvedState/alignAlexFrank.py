@@ -19,7 +19,7 @@ The control part use the normal axis of the sub.
 
 class AlignAlexFrank(EventState):
 
-    def __init__(self):
+    def __init__(self, object_height, object_width, distance_to_target, yaw_adjustment=10,max_time=100, topic_to_listen = '/proc_image_processing/simple_vampire_torpille',image_height = 1544, image_width=2064, speed = 0.1 , maximum_alignment = 10, queue_size=10):
         super(AlignAlexFrank, self).__init__(outcomes=['continue', 'failed'])
         self.set_local_target = None
         self.set_local_target_speed = None
@@ -71,29 +71,27 @@ class AlignAlexFrank(EventState):
         # Variable for alignment
         self.z_adjustment = None
         self.basic_z_adjustment = 1
-        self.minimum_z_adjustment = 0.3
+        self.minimum_z_adjustment = 0.4
 
         self.yaw_adjustment = None
         self.minimum_yaw_adjustment = 3.0
-        self.basic_yaw_adjustment = 10.0
+        self.basic_yaw_adjustment = yaw_adjustment
 
         # Lost vision
         self.last_detect = None
-        self.max_lost_time = rospy.Duration(100, 0)
+        self.max_lost_time = rospy.Duration(max_time, 0)
 
-        self.alex_frank_magic = 1.0
+        self.alex_frank_magic = 1.0  # DO NOT REMOVE. IMPORTANT
 
-    def define_parameters(self):
-        self.parameters.append(Parameter('param_heading', 10, 'Yaw rotation to align vision'))
-        self.parameters.append(Parameter('param_topic_to_listen', '/proc_image_processing/buoy_red', 'Topic to listen'))
-        self.parameters.append(Parameter('param_distance_to_victory', 2, 'Minimal distance to ram (m)'))
-        self.parameters.append(Parameter('param_maximum_nb_alignment', 4, 'Maximum number of alignment'))
-        self.parameters.append(Parameter('param_max_queue_size', 10, 'Maximum size of queue'))
-        self.parameters.append(Parameter('param_object_real_height', 100, 'Object height (mm)'))
-        self.parameters.append(Parameter('param_object_real_width', 100, 'Object width (mm)'))
-        self.parameters.append(Parameter('param_image_height', 1544, 'Image height (px)'))
-        self.parameters.append(Parameter('param_image_width', 2064, 'Image width (px)'))
-        self.parameters.append(Parameter('param_speed_x', 0.1, 'Speed to travel'))
+        self.param_topic_to_listen = topic_to_listen
+        self.param_distance_to_victory = distance_to_target
+        self.param_maximum_nb_alignment = maximum_alignment
+        self.param_max_queue_size = queue_size
+        self.param_object_real_height = object_height
+        self.param_object_real_width = object_width
+        self.param_image_height = image_height
+        self.param_image_width = image_width
+        self.param_speed_x = speed
 
     def on_enter(self, userdata):
         rospy.wait_for_service('/proc_control/set_local_decoupled_target')
@@ -119,21 +117,23 @@ class AlignAlexFrank(EventState):
 
         # Setup odometry service
         self.odom = rospy.Subscriber('/proc_navigation/odom', Odometry, self.odom_cb)
-        self.get_first_position()
+        # self.get_first_position()
 
         # Setup bounding boxes
         self.x_bounding_box = BoundingBox(self.param_image_height, self.param_image_width * 0.15, 0, 0)
-        self.y_bounding_box = BoundingBox(self.param_image_height * 0.20, self.param_image_width, 0, 0)
+        self.y_bounding_box = BoundingBox(self.param_image_height * 0.01, self.param_image_width, 0, -375)
 
     def execute(self, userdata):
-        if self.target_distance['current'] != 0.0 and self.target_distance['current'] < self.param_distance_to_victory:
-            return 'succeeded'
+
+        if float(self.target_distance['current']) != 0.0 and self.target_distance['current'] < self.param_distance_to_victory:
+            rospy.loginfo('{}'.format(self.target_distance['current']))
+            return 'continue'
         if self.count >= self.param_maximum_nb_alignment:
             rospy.loginfo('aborted cause: max alignment reached')
-            return 'aborted'
+            return 'failed'
         if self.check_vision():
             rospy.loginfo('aborted cause: max time elapsed')
-            return 'aborted'
+            return 'failed'
 
     def align_submarine(self):
         rospy.loginfo('Align number %i' % self.count)
@@ -150,7 +150,7 @@ class AlignAlexFrank(EventState):
             if not self.is_moving:
                 rospy.loginfo('Move forward.')
                 self.forward_speed()
-            if not self.is_align_x():
+            if not self.is_align_x() and self.target_reached:
                 self.align_yaw()
                 rospy.loginfo('Yaw alignment.')
 
@@ -180,8 +180,9 @@ class AlignAlexFrank(EventState):
 
     def vision_cb(self, data):
         self.vision_data.append(VisionData(data.x, data.y, data.height, data.width))
-
+        rospy.loginfo('vision')
         if len(self.vision_data) == self.param_max_queue_size:
+            rospy.loginfo('full')
             self.parse_vision_data()
 
     def odom_cb(self, data):
@@ -238,8 +239,8 @@ class AlignAlexFrank(EventState):
 
     def get_first_position(self):
         while not self.first_position:
-            pass
-        return
+            rospy.loginfo('aborted cause: no first position found')
+        return 'failed'
 
     def is_align_y(self):
         if self.y_bounding_box.is_inside(self.averaging_vision_x_pixel, self.averaging_vision_y_pixel):
@@ -276,9 +277,6 @@ class AlignAlexFrank(EventState):
             return True
         else:
             return False
-
-    def get_outcomes(self):
-        return ['succeeded', 'aborted', 'preempted']
 
     def on_exit(self, userdata):
         self.vision_subscriber.unregister()
