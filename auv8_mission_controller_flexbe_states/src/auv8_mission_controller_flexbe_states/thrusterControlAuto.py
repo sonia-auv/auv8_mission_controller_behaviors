@@ -1,37 +1,8 @@
 #!/usr/bin/env python
-
-'''
- * file	ThrusterControlByValue.py
- * \author	 Alexandre Desgagne <alexandre1998@live.ca>
- * \coauthor Camille Sauvain <camille.sauvain.1@etsmtl.net>
- * \date	 19/02/20
- *
- * \copyright Copyright (c) 2020 S.O.N.I.A. AUV All rights reserved.
- *
- * \section LICENSE
- *
- * This file is part of S.O.N.I.A. software.
- *
- * S.O.N.I.A. AUV software is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * S.O.N.I.A. AUV software is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with S.O.N.I.A. AUV software. If not, see <http://www.gnu.org/licenses/>.
-'''
-
 import rospy
 
 import json
 import time
-import subprocess
-import shlex
 from Tkinter import *
 import tkFileDialog as filedialog
 
@@ -49,8 +20,8 @@ class ThrusterControlAuto(EventState):
     def __init__(self):
         super(ThrusterControlAuto, self).__init__(outcomes = ['continue', 'failed'])
         self.thruster_count = 8
-        self.thruster_min_effort = -35
-        self.thruster_max_effort = 35
+        self.thruster_min_effort = -30
+        self.thruster_max_effort = 30
         self.thruster_stop_effort = 0
         self.started = False
 
