@@ -103,3 +103,4 @@ class ThrusterControlAuto(EventState):
     def set_zeros(self):
         for i in range(self.thruster_count):
             self.publisher.publish(ID=self.ids[i], effort=self.thruster_stop_effort)
+        self.enable_thrusters_service(isEnable=True)
