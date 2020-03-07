@@ -85,7 +85,7 @@ class MoveRelativeSpeedXWithSwitch(EventState):
                                       self.param_orientation_yaw)
             except rospy.ServiceException as exc:
                 rospy.loginfo('Service did not process request: ' + str(exc))
-            return 'succeeded'
+            return 'continue'
 
     def on_exit(self, userdata):
         self.odom.unregister()

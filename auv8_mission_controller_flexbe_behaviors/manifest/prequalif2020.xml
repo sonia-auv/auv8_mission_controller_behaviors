@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="prequalif2020">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.prequalif2020_sm" class="prequalif2020SM" />
+	<tagstring>prequalif</tagstring>
+	<author>fcr</author>
+	<date>Sat Mar 07 2020</date>
+	<description>
+		speed prequalif pour babe
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>
