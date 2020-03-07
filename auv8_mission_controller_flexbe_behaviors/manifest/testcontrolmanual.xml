@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="TestControlManual">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.testcontrolmanual_sm" class="TestControlManualSM" />
+	<tagstring>Tag2</tagstring>
+	<author>Alex</author>
+	<date>Sat Mar 07 2020</date>
+	<description>
+		Test thrusters manual control.
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>
