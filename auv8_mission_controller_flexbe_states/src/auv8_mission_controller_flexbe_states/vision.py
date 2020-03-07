@@ -14,7 +14,7 @@ class LaunchVision(EventState):
         -- param_cmd uint8      Enter 1:Open  2:Close
 
         <= continue			Indicates that the camera started
-        <= failed			Indicates that the camera didn't stated
+        <= failed			Indicates that the camera didn't started
 
     """
     def __init__(self, param_node_name, camera_no, param_cmd):
