@@ -59,6 +59,7 @@ class ThrusterControlManual(EventState):
                 thrusters_efforts.append(int(self.T6))
                 thrusters_efforts.append(int(self.T7))
                 thrusters_efforts.append(int(self.T8))
+                self.set_efforts(thrusters_efforts)
                 Logger.loginfo('Wait {} seconds...'.format(self.bag_time))
                 time.sleep(float(self.bag_time)) 
             except:
@@ -101,3 +102,4 @@ class ThrusterControlManual(EventState):
     def set_zeros(self):
         for i in range(self.thruster_count):
             self.publisher.publish(ID=self.ids[i], effort=self.thruster_stop_effort)
+        self.enable_thrusters_service(isEnable=True)

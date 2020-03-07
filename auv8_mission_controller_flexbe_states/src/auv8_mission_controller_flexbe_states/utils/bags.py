@@ -10,4 +10,3 @@ def startControlBag(name, time):
         subprocess.Popen(command)
     except:
         print "Bag error"
-    git
