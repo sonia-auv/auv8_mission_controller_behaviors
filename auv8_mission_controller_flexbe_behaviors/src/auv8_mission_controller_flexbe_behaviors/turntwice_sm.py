@@ -8,9 +8,7 @@
 ###########################################################
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
-from auv8_mission_controller_flexbe_states.moveZByStep import MoveZByStep
-from auv8_mission_controller_flexbe_states.alignAlexFrank import AlignAlexFrank
-from auv8_mission_controller_flexbe_states.vision import LaunchVision
+from auv8_mission_controller_flexbe_states.RotateYawRelative import RotateYawRelative
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
 
@@ -21,15 +19,15 @@ from auv8_mission_controller_flexbe_states.vision import LaunchVision
 Created on Sat Mar 07 2020
 @author: fcr
 '''
-class alignFrankAlexSM(Behavior):
+class turnTwiceSM(Behavior):
 	'''
-	align front speed
+	720
 	'''
 
 
 	def __init__(self):
-		super(alignFrankAlexSM, self).__init__()
-		self.name = 'alignFrankAlex'
+		super(turnTwiceSM, self).__init__()
+		self.name = 'turnTwice'
 
 		# parameters of this behavior
 
@@ -45,7 +43,7 @@ class alignFrankAlexSM(Behavior):
 
 
 	def create(self):
-		# x:30 y:365, x:130 y:365
+		# x:30 y:365, x:436 y:292
 		_state_machine = OperatableStateMachine(outcomes=['finished', 'failed'])
 
 		# Additional creation code can be added inside the following tags
@@ -55,22 +53,28 @@ class alignFrankAlexSM(Behavior):
 
 
 		with _state_machine:
-			# x:30 y:40
-			OperatableStateMachine.add('depth',
-										MoveZByStep(depth=1.5, step=0.5),
-										transitions={'continue': 'launchFront', 'failed': 'failed'},
+			# x:208 y:98
+			OperatableStateMachine.add('turnYaw',
+										RotateYawRelative(relativeYaw=179),
+										transitions={'continue': 'yaw2', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
-			# x:471 y:155
-			OperatableStateMachine.add('the best align',
-										AlignAlexFrank(object_height=450, object_width=300, distance_to_target=1, yaw_adjustment=10, max_time=100, topic_to_listen='/proc_image_processing/execution_508_result', image_height=1544, image_width=2064, speed=0.1, maximum_alignment=10, queue_size=10),
+			# x:491 y:101
+			OperatableStateMachine.add('yaw2',
+										RotateYawRelative(relativeYaw=179),
+										transitions={'continue': 'yaw3', 'failed': 'failed'},
+										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
+
+			# x:674 y:331
+			OperatableStateMachine.add('yaw3',
+										RotateYawRelative(relativeYaw=179),
+										transitions={'continue': 'yaw4', 'failed': 'failed'},
+										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
+
+			# x:376 y:507
+			OperatableStateMachine.add('yaw4',
+										RotateYawRelative(relativeYaw=179),
 										transitions={'continue': 'finished', 'failed': 'failed'},
-										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
-
-			# x:323 y:43
-			OperatableStateMachine.add('launchFront',
-										LaunchVision(param_node_name='execution_508', camera_no=1, param_cmd=1),
-										transitions={'continue': 'the best align', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
 
