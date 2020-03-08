@@ -70,8 +70,8 @@ class AlignAlexFrank(EventState):
 
         # Variable for alignment
         self.z_adjustment = None
-        self.basic_z_adjustment = 1
-        self.minimum_z_adjustment = 0.4
+        self.basic_z_adjustment = 0.5
+        self.minimum_z_adjustment = 0.2
 
         self.yaw_adjustment = None
         self.minimum_yaw_adjustment = 3.0
@@ -162,7 +162,7 @@ class AlignAlexFrank(EventState):
         self.z_adjustment = self.z_adjustment if abs(self.z_adjustment) >= self.minimum_z_adjustment else (self.z_adjustment / abs(
             self.z_adjustment)) * self.minimum_z_adjustment
         rospy.loginfo('New z adjustment: ' + str(self.z_adjustment))
-        self.set_local_target(0.0, 0.0, self.z_adjustment, 0.0, 0.0, 0.0, False, False, True, False, False, False)
+        self.set_local_target(0.0, 0.0, self.position.z + self.z_adjustment, 0.0, 0.0, 0.0, False, False, True, False, False, False)
 
     def align_yaw(self):
         self.yaw_adjustment = (self.averaging_vision_x_pixel / (self.param_image_width / 2)) * self.basic_yaw_adjustment
