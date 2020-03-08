@@ -74,7 +74,7 @@ class prequalif2020SM(Behavior):
 
 			# x:1006 y:191
 			OperatableStateMachine.add('speed',
-										MoveRelativeSpeedXWithSwitch(distance=10, speed=1, yaw=300),
+										MoveRelativeSpeedXWithSwitch(distance=16, speed=1, yaw=300),
 										transitions={'continue': 'speedTurn', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
@@ -86,7 +86,7 @@ class prequalif2020SM(Behavior):
 
 			# x:531 y:360
 			OperatableStateMachine.add('speed back',
-										MoveRelativeSpeedXWithSwitch(distance=10, speed=1, yaw=130),
+										MoveRelativeSpeedXWithSwitch(distance=16, speed=1, yaw=130),
 										transitions={'continue': 'mode 0', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
