@@ -63,13 +63,13 @@ class alignFrankAlexSM(Behavior):
 
 			# x:471 y:155
 			OperatableStateMachine.add('the best align',
-										AlignAlexFrank(object_height=450, object_width=300, distance_to_target=1, yaw_adjustment=10, max_time=100, topic_to_listen='/proc_image_processing/execution_508_result', image_height=1544, image_width=2064, speed=0.1, maximum_alignment=10, queue_size=10),
+										AlignAlexFrank(object_height=450, object_width=300, distance_to_target=1, yaw_adjustment=10, max_time=100, topic_to_listen='/proc_image_processing/Execution_33_result', image_height=1544, image_width=2064, speed=0.1, maximum_alignment=10, queue_size=10),
 										transitions={'continue': 'finished', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
 			# x:323 y:43
 			OperatableStateMachine.add('launchFront',
-										LaunchVision(param_node_name='execution_508', camera_no=1, param_cmd=1),
+										LaunchVision(param_node_name='Execution_33', camera_no=1, param_cmd=1),
 										transitions={'continue': 'the best align', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
