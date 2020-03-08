@@ -8,13 +8,14 @@
 ###########################################################
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
-from auv8_mission_controller_flexbe_states.switchControlMode import Switch
+from auv8_mission_controller_flexbe_states.timeOut import TimesOut
 from auv8_mission_controller_flexbe_states.moveXRelatif import MoveXRelative
 from auv8_mission_controller_flexbe_states.moveSpeedRelativeXWithSwitch import MoveRelativeSpeedXWithSwitch
 from auv8_mission_controller_flexbe_states.moveGlobalXY import MoveXY
 from auv8_mission_controller_flexbe_states.moveGlobalYaw import MoveYaw
 from auv8_mission_controller_flexbe_states.moveGlobalZ import MoveZ
 from auv8_mission_controller_flexbe_states.moveZByStep import MoveZByStep
+from auv8_mission_controller_flexbe_states.switchControlMode import Switch
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
 
@@ -59,31 +60,31 @@ class prequalif2020SM(Behavior):
 
 
 		with _state_machine:
-			# x:27 y:133
-			OperatableStateMachine.add('initialSwitch',
-										Switch(mode=0),
-										transitions={'continue': 'setDepth', 'failed': 'failed'},
+			# x:83 y:54
+			OperatableStateMachine.add('timer poche',
+										TimesOut(duration=15),
+										transitions={'continue': 'initialSwitch', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
-			# x:1121 y:138
+			# x:850 y:67
 			OperatableStateMachine.add('pass gate',
 										MoveXRelative(distance_x=2),
 										transitions={'continue': 'speed', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
-			# x:296 y:206
+			# x:1006 y:191
 			OperatableStateMachine.add('speed',
 										MoveRelativeSpeedXWithSwitch(distance=10, speed=1, yaw=350),
 										transitions={'continue': 'speedTurn', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
-			# x:408 y:305
+			# x:852 y:304
 			OperatableStateMachine.add('speedTurn',
 										MoveRelativeSpeedXWithSwitch(distance=4, speed=1, yaw=90),
 										transitions={'continue': 'speed back', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
-			# x:547 y:395
+			# x:531 y:360
 			OperatableStateMachine.add('speed back',
 										MoveRelativeSpeedXWithSwitch(distance=10, speed=1, yaw=190),
 										transitions={'continue': 'mode 0', 'failed': 'failed'},
@@ -95,7 +96,7 @@ class prequalif2020SM(Behavior):
 										transitions={'continue': 'yawGlobal', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
-			# x:290 y:548
+			# x:327 y:612
 			OperatableStateMachine.add('yawGlobal',
 										MoveYaw(yaw=180),
 										transitions={'continue': 'pass gate back', 'failed': 'failed'},
@@ -113,16 +114,28 @@ class prequalif2020SM(Behavior):
 										transitions={'continue': 'finished', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
-			# x:190 y:44
+			# x:439 y:76
 			OperatableStateMachine.add('setDepth',
 										MoveZByStep(depth=1, step=0.5),
-										transitions={'continue': 'pass gate', 'failed': 'failed'},
+										transitions={'continue': 'yawglob', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
 			# x:777 y:435
 			OperatableStateMachine.add('mode 0',
 										Switch(mode=0),
 										transitions={'continue': 'moveglobal', 'failed': 'failed'},
+										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
+
+			# x:50 y:191
+			OperatableStateMachine.add('initialSwitch',
+										Switch(mode=0),
+										transitions={'continue': 'setDepth', 'failed': 'failed'},
+										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
+
+			# x:595 y:192
+			OperatableStateMachine.add('yawglob',
+										MoveYaw(yaw=310),
+										transitions={'continue': 'pass gate', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
 
