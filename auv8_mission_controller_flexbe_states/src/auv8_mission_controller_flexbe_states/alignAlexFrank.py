@@ -134,6 +134,9 @@ class AlignAlexFrank(EventState):
         if self.check_vision():
             rospy.loginfo('aborted cause: max time elapsed')
             return 'failed'
+        if self.position.z > 2.75:
+            rospy.loginfo('aborted cause: depth')
+            return 'failed'
 
     def align_submarine(self):
         rospy.loginfo('Align number %i' % self.count)
