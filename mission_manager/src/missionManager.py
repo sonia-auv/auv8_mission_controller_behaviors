@@ -16,20 +16,20 @@ class MissionManager:
         self.mission_switch_sub = rospy.Subscriber('/provider_kill_mission/mission_switch_msg', MissionSwitchMsg,
                                                     self.handle_mission_switch_activated)
 
-        self.flexbe_behavior_pub = rospy.Publisher('/flexbe/execute_behavior/goal', BehaviorExecutionActionGoal, queue_size=10)
+        self.flexbe_behavior_pub = rospy.Publisher('/flexbe/execute_behavior/goal', BehaviorExecutionActionGoal, queue_size=5)
 
-        rospy.Service('mission_executor/current_mission', CurrentMission, self.handle_current_mission)
+        rospy.Service('mission_manager/current_mission', CurrentMission, self.handle_current_mission)
 
         rospy.spin()
 
     def handle_mission_switch_activated(self, msg):
         rospy.loginfo("Mission switch state change: {}".format(msg.state))
         rospy.loginfo("Mission: {}".format(self.current_mission))
-        if self.current_mission:
-            if msg.state:
-                self.handle_start_mission(None)
-            else:
-                self.handle_stop_mission(None)
+        #if self.current_mission:
+        if msg.state:
+            self.handle_start_mission(None)
+        else:
+            self.handle_stop_mission(None)
     
     def handle_current_mission(self, req):
         rospy.loginfo("Mission selected")
@@ -37,7 +37,12 @@ class MissionManager:
 
     def handle_start_mission(self, req):
         rospy.loginfo("Start mission")
-        self.flexbe_behavior_pub.publish('{goal: {behavior_name: "Example Behavior"}}')
+        msg = BehaviorExecutionActionGoal()
+        #msg.goal.behavior_name = 'Search Victims'
+        #mission_full_param_name = rospy.search_param('mission_behavior')
+        #msg.goal.behavior_name = rospy.get_param(mission_full_param_name)
+        msg.goal.behavior_name = 'Example Behavior'
+        self.flexbe_behavior_pub.publish(msg)
 
     def handle_stop_mission(self, req):
         rospy.loginfo("Stop mission")
