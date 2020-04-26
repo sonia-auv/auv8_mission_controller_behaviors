@@ -1,6 +1,0 @@
-<launch>
-	<node name="missionManager"
-	    pkg="auv8_mission_controller_flexbe_states"
-	    type="mission_manager.py"
-	    output="screen" />
-</launch>
