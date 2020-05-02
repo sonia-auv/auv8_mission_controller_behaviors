@@ -27,9 +27,10 @@ add_message_files(
   MissionNameMsg.msg
 )
 
-#add_service_files(DIRECTORY srv
-#  FILES 
-#)
+add_service_files(DIRECTORY srv
+ FILES 
+ ListMissions.srv
+)
 
 
 ## Generate added messages and services with any dependencies listed here
