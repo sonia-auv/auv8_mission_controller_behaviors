@@ -22,23 +22,14 @@ find_package(catkin REQUIRED COMPONENTS
 
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
-
-add_service_files(DIRECTORY srv
-  FILES 
-  ListMissions.srv
-  LoadMission.srv
-  StartMission.srv
-  StopMission.srv
-  CurrentMission.srv
-  ReceivedMission.srv
-  ReceivedState.srv
-  SendMission.srv
+add_message_files(
+  FILES
+  MissionNameMsg.msg
 )
+
+#add_service_files(DIRECTORY srv
+#  FILES 
+#)
 
 
 ## Generate added messages and services with any dependencies listed here
