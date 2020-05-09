@@ -41,6 +41,8 @@ class MissionManager:
         rospy.spin()
 
     # Handler for mission switch ON/OFF
+    # - msg: Input message from mission switch topic
+    # - return: 
     def handle_mission_switch_activated(self, msg):
         rospy.loginfo("Mission switch state change: {}".format(msg.state))
         rospy.loginfo("Mission: {}".format(self.current_mission))
@@ -51,11 +53,15 @@ class MissionManager:
                 self.handle_stop_mission(None)
     
     # Handler to get selected mission name
+    # - req: Requested mission name.
+    # - return: 
     def handle_current_mission(self, req):
         rospy.loginfo("Mission selected : {}".format(req.name))
         self.current_mission = req.name
 
     # Handler to start the mission
+    # - req: Parameter not used.
+    # - return:
     def handle_start_mission(self, req):
         rospy.loginfo("Start mission")
         msg = BehaviorExecutionActionGoal()
@@ -63,12 +69,16 @@ class MissionManager:
         self.flexbe_behavior_pub.publish(msg)
 
     # Handler to stop the mission
+    # - req: Parameter not used.
+    # - return:
     def handle_stop_mission(self, req):
         rospy.loginfo("Stop mission")
         msg = Empty()
         self.flexbe_command_pub.publish(msg)
 
     # Handler to list every available missions
+    # - req: Parameter not used.
+    # - return: Mission list as a service response.
     def handle_list_missions(self, req):
         rospy.loginfo("List mission")
         missions_list = ""
