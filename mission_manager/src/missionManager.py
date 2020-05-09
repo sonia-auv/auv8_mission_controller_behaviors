@@ -10,6 +10,7 @@ from mission_manager.msg import MissionNameMsg
 from provider_kill_mission.msg import MissionSwitchMsg
 from flexbe_msgs.msg import BehaviorExecutionActionGoal
 from std_msgs.msg import Empty
+from xml.dom import minidom
 
 class MissionManager:
 
@@ -17,7 +18,6 @@ class MissionManager:
         rospy.init_node('mission_manager')
 
         self.current_mission = None
-        self.missions = None
 
         # Get manifest folder
         rp = rospkg.RosPack()
@@ -35,6 +35,8 @@ class MissionManager:
 
         # Services
         rospy.Service('mission_executor/list_missions', ListMissions, self.handle_list_missions)
+
+        self.handle_list_missions(None)
 
         rospy.spin()
 
@@ -68,26 +70,14 @@ class MissionManager:
 
     # Handler to list every available missions
     def handle_list_missions(self, req):
-        self.missions = []
-        self.load_missions_file(self.missions_directory)
-        self.missions.sort(key=str.lower)
-        missions_list = None
-        for mission in self.missions:
-            if not missions_list:
-                missions_list = mission
-            else:
-                missions_list = missions_list + ',' + mission
-        rospy.loginfo(missions_list)
-        return ListMissionsResponse(missions_list)
-
-    # Function to load all mission files
-    def load_missions_file(self, directory):
-        for file in os.listdir(directory):
-            file_path = os.path.join(directory, file)
-            if not os.path.isfile(file_path):
-                self.load_missions_file(file_path)
-                continue
-            self.missions.append(file_path.replace(self.missions_directory + '/', ''))
+        rospy.loginfo("List mission")
+        missions_list = ""
+        for file in os.listdir(self.missions_directory):
+            mission_file = minidom.parse(os.path.join(self.missions_directory, file))
+            mission = mission_file.getElementsByTagName('behavior')
+            mission_name = mission[0].attributes['name'].value
+            missions_list = missions_list + mission_name + ";"
+        return ListMissionsResponse(missions = missions_list)
 
 if __name__ == '__main__':
     MissionManager()
