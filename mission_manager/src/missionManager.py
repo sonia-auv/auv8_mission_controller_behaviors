@@ -31,7 +31,7 @@ class MissionManager:
         
         # Publishers
         self.flexbe_behavior_pub = rospy.Publisher('/flexbe/execute_behavior/goal', BehaviorExecutionActionGoal, queue_size=5)
-        self.flexbe_command_pub = rospy.Publisher('/flexbe/commands/preempt', Empty, queue_size=5)
+        self.flexbe_preempt_pub = rospy.Publisher('/flexbe/command/preempt', Empty, queue_size=100)
 
         # Services
         rospy.Service('mission_executor/list_missions', ListMissions, self.handle_list_missions)
@@ -65,7 +65,7 @@ class MissionManager:
     def handle_start_mission(self, req):
         rospy.loginfo("Start mission")
         msg = BehaviorExecutionActionGoal()
-        msg.goal.behavior_name = 'Example Behavior'
+        msg.goal.behavior_name = self.current_mission
         self.flexbe_behavior_pub.publish(msg)
 
     # Handler to stop the mission
@@ -73,8 +73,7 @@ class MissionManager:
     # - return:
     def handle_stop_mission(self, req):
         rospy.loginfo("Stop mission")
-        msg = Empty()
-        self.flexbe_command_pub.publish(msg)
+        self.flexbe_preempt_pub.publish()
 
     # Handler to list every available missions
     # - req: Parameter not used.
