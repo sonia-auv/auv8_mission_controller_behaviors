@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="rotate90D">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.rotate90d_sm" class="rotate90DSM" />
+	<tagstring>sad</tagstring>
+	<author>asd</author>
+	<date>Sat Feb 22 2020</date>
+	<description>
+		sadassd
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

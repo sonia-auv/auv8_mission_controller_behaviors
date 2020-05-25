@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="zBstep">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.zbstep_sm" class="zBstepSM" />
+	<tagstring>z</tagstring>
+	<author>fcr</author>
+	<date>Thu Feb 13 2020</date>
+	<description>
+		efef
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

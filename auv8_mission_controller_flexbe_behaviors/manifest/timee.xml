@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="timee">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.timee_sm" class="timeeSM" />
+	<tagstring>sad</tagstring>
+	<author>sad</author>
+	<date>Mon Mar 02 2020</date>
+	<description>
+		ds
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

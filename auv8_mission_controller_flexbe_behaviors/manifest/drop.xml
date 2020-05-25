@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="drop">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.drop_sm" class="dropSM" />
+	<tagstring>actuators</tagstring>
+	<author>fcr</author>
+	<date>Sat Feb 22 2020</date>
+	<description>
+		dasda
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

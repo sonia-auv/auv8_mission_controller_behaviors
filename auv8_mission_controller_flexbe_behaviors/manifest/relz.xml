@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="relZ">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.relz_sm" class="relZSM" />
+	<tagstring>z</tagstring>
+	<author>fcr</author>
+	<date>Mon Mar 02 2020</date>
+	<description>
+		down 1m
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

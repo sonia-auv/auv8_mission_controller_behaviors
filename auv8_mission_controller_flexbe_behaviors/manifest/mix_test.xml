@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="mix test">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.mix_test_sm" class="mixtestSM" />
+	<tagstring>fe</tagstring>
+	<author>fcr</author>
+	<date>Mon Mar 02 2020</date>
+	<description>
+		test
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

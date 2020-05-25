@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="The First One">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.the_first_one_sm" class="TheFirstOneSM" />
+	<tagstring>mouvement patern</tagstring>
+	<author>fcr</author>
+	<date>Sat Feb 22 2020</date>
+	<description>
+		This behavior make a square of size 2m, Rotating right
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

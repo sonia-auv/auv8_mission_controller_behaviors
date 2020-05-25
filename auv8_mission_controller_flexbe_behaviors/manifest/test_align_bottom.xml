@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="test align bottom">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.test_align_bottom_sm" class="testalignbottomSM" />
+	<tagstring></tagstring>
+	<author>fcr</author>
+	<date>Thu Mar 05 2020</date>
+	<description>
+		test
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

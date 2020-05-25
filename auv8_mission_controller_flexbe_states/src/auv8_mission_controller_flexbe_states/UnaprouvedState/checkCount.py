@@ -1,0 +1,47 @@
+# import rospy
+# import math
+
+from flexbe_core import EventState, Logger
+# from proc_image_processing.msg import VisionTarget
+
+
+# class WaitHitCountTarget(EventState):
+
+#     def __init__(self):
+ #       super(RotateYawRelative, self).__init__(outcomes=['continue', 'failed'])
+#         self.set_local_target = None
+#         self.vision_subscriber = None
+#         self.set_local_target_topic = None
+
+#         self.time = None
+
+#         self.last_vision_target = None
+#         self.nb_hit_count = 0
+
+#         self.target_reached = False
+
+#     def define_parameters(self):
+#         self.parameters.append(Parameter('param_topic_to_listen', '/proc_image_processing/buoy_red_result', 'Name of topic to listen'))
+#         self.parameters.append(Parameter('param_nb_hit_to_fail', 30, 'nb of hit to finish this state'))
+#         self.parameters.append(Parameter('param_nb_', 50, 'max distance in pixel to have a consecutive count'))
+
+#     def get_outcomes(self):
+#         return ['succeeded', 'aborted', 'preempted']
+
+#     def vision_cb(self, vision_data):
+#         pass
+
+#     def on_enter(self, userdata):
+#         self.vision_subscriber = rospy.Subscriber(self.param_topic_to_listen, VisionTarget, self.vision_cb)
+#         self.last_vision_target = None
+#         self.nb_hit_count = 0
+#         self.time = None
+
+#     def execute(self, userdata):
+#         if self.nb_hit_count >= self.param_nb_hit_to_fail:
+#             self.set_target(0.0, 0.0, 0.0)
+#             return 'succeeded'
+
+#     def on_exit(self, userdata):
+#         self.vision_subscriber.unregister()
+
