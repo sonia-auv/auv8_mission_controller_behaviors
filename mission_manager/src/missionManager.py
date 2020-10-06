@@ -4,9 +4,9 @@ import os
 import rospy
 import rospkg
 
-from mission_manager.srv import ListMissions, ListMissionsResponse
+from sonia_common.srv import ListMissions, ListMissionsResponse
 
-from mission_manager.msg import MissionNameMsg
+from sonia_common.msg import MissionNameMsg
 from provider_kill_mission.msg import MissionSwitchMsg
 from flexbe_msgs.msg import BehaviorExecutionActionGoal
 from std_msgs.msg import Empty
