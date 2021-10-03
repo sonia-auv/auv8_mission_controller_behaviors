@@ -6,10 +6,10 @@ from proc_control.msg import TargetReached
 from proc_control.srv import SetDecoupledTarget
 
 
-class MoveXRelative(EventState):
+class MoveXRelatif(EventState):
 
     def __init__(self, distance_x):
-        super(MoveXRelative, self).__init__(outcomes=['continue', 'failed'])
+        super(MoveXRelatif, self).__init__(outcomes=['continue', 'failed'])
         self.target_reached = False
         self.distance_x = distance_x
 

@@ -4,10 +4,10 @@ from flexbe_core import EventState, Logger
 from proc_control.srv import SetControlMode, SetControlModeRequest, SetDecoupledTarget
 
 
-class Switch(EventState):
+class switchControlMode(EventState):
 
     def __init__(self, mode):
-        super(Switch, self).__init__(outcomes=['continue', 'failed'])
+        super(switchControlMode, self).__init__(outcomes=['continue', 'failed'])
         self.start_time = None
         self.set_mode = None
 

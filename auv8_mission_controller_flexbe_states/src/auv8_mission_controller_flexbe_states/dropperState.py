@@ -4,10 +4,10 @@ from flexbe_core import EventState, Logger
 from proc_actuators.srv import cmActionSrv, cmActionSrvRequest
 
 
-class Droppers(EventState):
+class dropperState(EventState):
 
     def __init__(self, param):
-        super(Droppers, self).__init__(outcomes=['continue', 'failed'])
+        super(dropperState, self).__init__(outcomes=['continue', 'failed'])
         self.start_time = None
         self.do_action = None
 

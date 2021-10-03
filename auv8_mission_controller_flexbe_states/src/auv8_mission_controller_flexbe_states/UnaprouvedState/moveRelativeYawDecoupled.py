@@ -5,10 +5,10 @@ from proc_control.msg import TargetReached
 from proc_control.srv import SetDecoupledTarget
 
 
-class MoveRelativeYawTDecoupled(EventState):
+class MoveRelativeYawDecoupled(EventState):
 
     def __init__(self):
-        super(MoveRelativeYawTDecoupled, self).__init__(outcomes=['continue', 'failed'])
+        super(MoveRelativeYawDecoupled, self).__init__(outcomes=['continue', 'failed'])
         self.target_reached = False
 
     def define_parameters(self):

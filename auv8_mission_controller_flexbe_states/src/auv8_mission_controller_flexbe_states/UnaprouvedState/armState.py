@@ -4,10 +4,10 @@ from flexbe_core import EventState, Logger
 from proc_actuators.srv import cmActionSrv, cmActionSrvRequest
 
 
-class Arm(EventState):
+class armState(EventState):
 
     def __init__(self):
-        super(Arm, self).__init__(outcomes=['continue', 'failed'])
+        super(armState, self).__init__(outcomes=['continue', 'failed'])
         self.start_time = None
         self.do_action = None
         self.action = cmActionSrvRequest()

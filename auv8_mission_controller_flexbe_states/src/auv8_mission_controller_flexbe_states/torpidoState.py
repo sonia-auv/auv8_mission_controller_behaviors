@@ -4,7 +4,7 @@ from flexbe_core import EventState, Logger
 from proc_actuators.srv import cmActionSrv, cmActionSrvRequest
 
 
-class Torpido(EventState):
+class torpidoState(EventState):
     """
             -- no_id uint8      Enter 1:Side Port 2:Side StarBoard
 
@@ -13,7 +13,7 @@ class Torpido(EventState):
 
     """
     def __init__(self, no_id):
-        super(Torpido, self).__init__(outcomes=['continue', 'failed'])
+        super(torpidoState, self).__init__(outcomes=['continue', 'failed'])
         self.start_time = None
         self.do_action = None
 

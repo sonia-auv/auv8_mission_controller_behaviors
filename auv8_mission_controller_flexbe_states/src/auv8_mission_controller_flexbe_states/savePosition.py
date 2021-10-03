@@ -4,10 +4,10 @@ from ..mission_state import EventState
 from nav_msgs.msg import Odometry
 
 
-class SavePosition(EventState):
+class savePosition(EventState):
 
     def __init__(self):
-        super(SavePosition, self).__init__(outcomes=['continue'])
+        super(savePosition, self).__init__(outcomes=['continue'])
 
         self.odom =None
         self.position = None

@@ -6,10 +6,10 @@ from proc_control.srv import SetPositionTarget
 from nav_msgs.msg import Odometry
 
 
-class MoveZ(EventState):
+class moveGlobalZ(EventState):
 
     def __init__(self, depth):
-        super(MoveZ, self).__init__(outcomes=['continue', 'failed'])
+        super(moveGlobalZ, self).__init__(outcomes=['continue', 'failed'])
 
         self.position = None
         self.orientation = None

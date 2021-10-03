@@ -7,7 +7,7 @@ from provider_vision.srv import start_stop_media
 
 
 
-class LaunchVision(EventState):
+class vision(EventState):
     """
         -- param_node_name      string Detection task
         -- camera_no uint8      Enter 1:Front 2:Bottom
@@ -18,7 +18,7 @@ class LaunchVision(EventState):
 
     """
     def __init__(self, param_node_name, camera_no, param_cmd):
-        super(LaunchVision, self).__init__(outcomes=['continue', 'failed'])
+        super(vision, self).__init__(outcomes=['continue', 'failed'])
         self.execute_vision_cmd = None
         self.start_stop_vision = None
         self.camera_no = camera_no

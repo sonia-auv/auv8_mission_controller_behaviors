@@ -6,10 +6,10 @@ from nav_msgs.msg import Odometry
 import math
 
 
-class MoveRelativeSpeedX(EventState):
+class moveSpeedRelativeX(EventState):
 
     def __init__(self):
-        super(MoveRelativeSpeedX, self).__init__(outcomes=['continue', 'failed'])
+        super(moveSpeedRelativeX, self).__init__(outcomes=['continue', 'failed'])
         self.set_local_target = None
         self.odom = None
         self.first_position = None
