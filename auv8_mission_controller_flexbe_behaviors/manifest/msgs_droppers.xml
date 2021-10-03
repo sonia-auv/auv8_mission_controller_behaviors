@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="msgs_droppers">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.msgs_droppers_sm" class="msgs_droppersSM" />
+	<tagstring>.</tagstring>
+	<author>.</author>
+	<date>Sat Jul 10 2021</date>
+	<description>
+		.
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

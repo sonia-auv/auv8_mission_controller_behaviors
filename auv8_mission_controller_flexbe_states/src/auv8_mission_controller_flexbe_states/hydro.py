@@ -2,9 +2,9 @@ import rospy
 import math
 
 from flexbe_core import EventState, Logger
-from proc_mapping.srv import PingerLocationService
-from proc_control.srv import SetDecoupledTarget
-from proc_control.msg import TargetReached
+from sonia_common.srv import PingerLocationService
+from sonia_common.srv import SetDecoupledTarget
+from sonia_common.msg import TargetReached
 
 
 class Hydro(EventState):
