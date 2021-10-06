@@ -9,7 +9,7 @@ import math
 class moveSpeedRelativeX(EventState):
 
     def __init__(self):
-        super(moveSpeedRelativeX, self).__init__(outcomes=['continue', 'failed'])
+        super(moveSpeedRelativeX, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.set_local_target = None
         self.odom = None
         self.first_position = None

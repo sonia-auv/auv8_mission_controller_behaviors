@@ -9,7 +9,7 @@ from proc_control.srv import SetDecoupledTarget
 class WaitHitCountTargetForRandomPinger(EventState):
 
     def __init__(self):
-        super(WaitHitCountTargetForRandomPinger, self)
+        super(WaitHitCountTargetForRandomPinger, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.set_local_target = None
         self.vision_subscriber = None
         self.vision_deepLearning = None

@@ -18,7 +18,7 @@ The control part use the normal axis of the sub.
 class ForwardBottomAlexFrank(EventState):
 
     def __init__(self):
-        super(ForwardBottomAlexFrank, self).__init__(outcomes=['continue', 'failed'])
+        super(ForwardBottomAlexFrank, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.vision_is_unreached = False
         self.target_reached = False
         self.victory = False

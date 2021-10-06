@@ -9,7 +9,7 @@ from proc_control.srv import SetDecoupledTarget
 class WaitHitCountTarget(EventState):
 
     def __init__(self):
-        super(WaitHitCountTarget, self)
+        super(WaitHitCountTarget, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.set_local_target = None
         self.vision_subscriber = None
         self.set_local_target_topic = None

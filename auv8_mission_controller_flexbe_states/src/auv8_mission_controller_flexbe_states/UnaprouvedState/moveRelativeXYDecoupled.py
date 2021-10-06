@@ -8,7 +8,7 @@ from proc_control.srv import SetDecoupledTarget
 class MoveRelativeXYDecoupled(EventState):
 
     def __init__(self):
-        super(MoveRelativeXYDecoupled, self).__init__(outcomes=['continue', 'failed'])
+        super(MoveRelativeXYDecoupled, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.target_reached = False
 
     def define_parameters(self):

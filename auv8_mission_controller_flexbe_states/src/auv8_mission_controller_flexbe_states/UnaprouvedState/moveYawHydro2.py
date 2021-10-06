@@ -12,7 +12,7 @@ from nav_msgs.msg import Odometry
 class moveYawHydro2(EventState):
 
     def __init__(self):
-        super(moveYawHydro2, self)
+        super(moveYawHydro2, self). __init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.target_reached = False
 
     def define_parameters(self):

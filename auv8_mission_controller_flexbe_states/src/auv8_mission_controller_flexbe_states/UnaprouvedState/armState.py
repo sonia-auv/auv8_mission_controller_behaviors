@@ -7,7 +7,7 @@ from proc_actuators.srv import cmActionSrv, cmActionSrvRequest
 class armState(EventState):
 
     def __init__(self):
-        super(armState, self).__init__(outcomes=['continue', 'failed'])
+        super(armState, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.start_time = None
         self.do_action = None
         self.action = cmActionSrvRequest()

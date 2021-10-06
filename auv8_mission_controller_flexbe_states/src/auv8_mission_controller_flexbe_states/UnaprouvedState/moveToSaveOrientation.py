@@ -9,7 +9,7 @@ from nav_msgs.msg import Odometry
 class MoveToSaveOrientation(EventState):
 
     def __init__(self):
-        super(MoveToSaveOrientation, self).__init__(outcomes=['continue', 'failed'])
+        super(MoveToSaveOrientation, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
 
         self.set_local_target = None
         self.target_reach_sub = None

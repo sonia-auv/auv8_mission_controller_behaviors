@@ -10,7 +10,7 @@ import math
 class MoveYawHydro(EventState):
 
     def __init__(self):
-        super(MoveYawHydro, self)
+        super(MoveYawHydro, self). __init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.target_reached = False
         self.set_local_target = None
         self.pinger_location = None

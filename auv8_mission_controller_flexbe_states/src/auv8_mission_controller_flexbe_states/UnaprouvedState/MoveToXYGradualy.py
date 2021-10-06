@@ -10,7 +10,7 @@ import math
 class MoveToXYGradualy(EventState):
 
     def __init__(self):
-        super(MoveToXYGradualy, self)
+        super(MoveToXYGradualy, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
 
         self.position = None
         self.orientation = None

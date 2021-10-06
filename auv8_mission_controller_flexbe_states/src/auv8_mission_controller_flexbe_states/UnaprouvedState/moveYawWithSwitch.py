@@ -8,7 +8,7 @@ from proc_control.srv import SetPositionTarget, SetControlMode, SetControlModeRe
 class MoveYawWithSwitch(EventState):
 
     def __init__(self):
-        super(MoveYawWithSwitch, self)
+        super(MoveYawWithSwitch, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.target_reached = False
 
         self.mode = SetControlModeRequest()

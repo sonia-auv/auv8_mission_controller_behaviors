@@ -8,7 +8,7 @@ from proc_control.srv import SetDecoupledTarget, SetControlMode, SetControlModeR
 class MoveRelativeYawDecoupledWithSwitch(EventState):
 
     def __init__(self):
-        super(MoveRelativeYawDecoupledWithSwitch, self).__init__(outcomes=['continue', 'failed'])
+        super(MoveRelativeYawDecoupledWithSwitch, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.target_reached = False
 
         self.mode = SetControlModeRequest()

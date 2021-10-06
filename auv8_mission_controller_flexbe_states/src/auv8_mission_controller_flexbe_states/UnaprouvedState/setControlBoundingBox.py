@@ -7,7 +7,7 @@ from proc_control.srv import SetBoundingBox, ResetBoundingBox
 class SetControlBoundingBox(EventState):
 
     def __init__(self):
-        super(SetControlBoundingBox, self)
+        super(SetControlBoundingBox, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.set_bounding_box = None
         self.reset_bounding_box = None
 

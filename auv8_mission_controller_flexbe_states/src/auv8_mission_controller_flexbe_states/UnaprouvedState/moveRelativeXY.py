@@ -8,7 +8,7 @@ from proc_control.srv import SetPositionTarget
 class MoveRelativeXY(EventState):
 
     def __init__(self):
-        super(MoveRelativeXY, self).__init__(outcomes=['continue', 'failed'])
+        super(MoveRelativeXY, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.set_local_target = None
         self.target_reach_sub = None
 

@@ -8,7 +8,7 @@ from proc_image_processing.msg import VisionTarget
 class LostVision(EventState):
 
     def __init__(self):
-        super(LostVision, self).__init__(outcomes=['continue', 'failed'])
+        super(LostVision, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.vision_subscriber = None
 
         self.last_target_received_time = None

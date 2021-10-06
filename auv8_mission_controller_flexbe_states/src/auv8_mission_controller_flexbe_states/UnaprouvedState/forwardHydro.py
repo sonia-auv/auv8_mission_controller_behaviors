@@ -10,7 +10,7 @@ from proc_control.msg import TargetReached
 class ForwardHydro(EventState):
 
     def __init__(self):
-        super(ForwardHydro, self).__init__(outcomes=['continue', 'failed'])
+        super(ForwardHydro, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.target_reached = False
 
     def define_parameters(self):

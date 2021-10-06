@@ -11,11 +11,12 @@ from nav_msgs.msg import Odometry
 class WaitTargetReached(EventState):
 
     def __init__(self):
-        super(WaitTargetReached, self)
+        super(WaitTargetReached, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
+	self.target_reached = False
 
     def define_parameters(self):
         pass
-        ##self.parameters.append(Parameter('param_queu_size', 10, 'Maximum size of queue'))
+        #self.parameters.append(Parameter('param_queu_size', 10, 'Maximum size of queue'))
 
     def get_outcomes(self):
         return ['succeeded', 'aborted', 'preempted']
@@ -33,7 +34,7 @@ class WaitTargetReached(EventState):
         # self.pinger_location_service = rospy.ServiceProxy('/proc_mapping/pinger_location_service', PingerLocationService)
 
     def execute(self, userdata):
-        if self.target_reached > 0:
+        if self.target_reached == True:
             return 'succeeded'
         
     def on_exit(self, userdata):

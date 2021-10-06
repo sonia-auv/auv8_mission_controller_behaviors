@@ -7,7 +7,7 @@ import time
 class SaveOrientation(EventState):
 
     def __init__(self):
-        super(SaveOrientation, self)
+        super(SaveOrientation, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
 
         self.odom = None
         self.orientation = None

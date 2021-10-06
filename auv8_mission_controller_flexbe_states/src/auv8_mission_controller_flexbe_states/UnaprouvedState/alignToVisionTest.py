@@ -10,7 +10,7 @@ from proc_image_processing.msg import VisionTarget
 class alignToVisionTest(EventState):
 
     def __init__(self):
-        super(alignToVisionTest, self).__init__(outcomes=['continue', 'failed'])
+        super(alignToVisionTest, self).__init__(outcomes=['succeeded', 'aborted', 'preempted'])
         self.set_local_target = None
         self.vision_subscriber = None
         self.target_reach_sub = None
