@@ -8,7 +8,7 @@
 ###########################################################
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
-from auv8_mission_controller_flexbe_states.moveXRelatif import MoveXRelative
+from auv8_mission_controller_flexbe_states.moveXRelatif import MoveXRelatif
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
 
@@ -55,7 +55,7 @@ class movexSM(Behavior):
 		with _state_machine:
 			# x:244 y:140
 			OperatableStateMachine.add('move x',
-										MoveXRelative(distance_x=2),
+										MoveXRelatif(distance_x=2),
 										transitions={'continue': 'finished', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 

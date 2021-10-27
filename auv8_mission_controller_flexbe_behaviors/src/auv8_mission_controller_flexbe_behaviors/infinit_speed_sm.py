@@ -9,7 +9,7 @@
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
 from auv8_mission_controller_flexbe_states.moveZByStep import MoveZByStep
-from auv8_mission_controller_flexbe_states.ToTest.switchControlMode import Switch
+from auv8_mission_controller_flexbe_states.ToTest.switchControlMode import switchControlMode
 from auv8_mission_controller_flexbe_states.ToTest.moveSpeed import MoveSpeed
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
@@ -63,7 +63,7 @@ class infinit_speedSM(Behavior):
 
 			# x:317 y:84
 			OperatableStateMachine.add('switch_2',
-										Switch(mode=2),
+										switchControlMode(mode=2),
 										transitions={'continue': 'speed_time', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 

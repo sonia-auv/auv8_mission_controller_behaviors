@@ -8,7 +8,7 @@
 ###########################################################
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
-from auv8_mission_controller_flexbe_states.ToTest.dropperState import Droppers
+from auv8_mission_controller_flexbe_states.ToTest.dropperState import dropperState
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
 
@@ -55,7 +55,7 @@ class dropSM(Behavior):
 		with _state_machine:
 			# x:190 y:114
 			OperatableStateMachine.add('droppers',
-										Droppers(param=1),
+										dropperState(param=1),
 										transitions={'continue': 'finished', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 

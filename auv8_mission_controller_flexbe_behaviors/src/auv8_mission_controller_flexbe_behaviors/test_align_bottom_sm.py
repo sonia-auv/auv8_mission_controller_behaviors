@@ -8,7 +8,7 @@
 ###########################################################
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
-from auv8_mission_controller_flexbe_states.vision import LaunchVision
+from auv8_mission_controller_flexbe_states.vision import vision
 from auv8_mission_controller_flexbe_states.alignRoulette import AlignRoulette
 from auv8_mission_controller_flexbe_states.forwardBottom import ForwardBottom
 # Additional imports can be added inside the following tags
@@ -57,7 +57,7 @@ class testalignbottomSM(Behavior):
 		with _state_machine:
 			# x:120 y:73
 			OperatableStateMachine.add('bot',
-										LaunchVision(param_node_name='simple_bat_wolf', camera_no=2, param_cmd=1),
+										vision(param_node_name='simple_bat_wolf', camera_no=2, param_cmd=1),
 										transitions={'continue': 'align', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 

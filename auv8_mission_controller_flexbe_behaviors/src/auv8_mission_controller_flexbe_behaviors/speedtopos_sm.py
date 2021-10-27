@@ -9,7 +9,7 @@
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
 from auv8_mission_controller_flexbe_states.moveZByStep import MoveZByStep
-from auv8_mission_controller_flexbe_states.moveSpeedRelativeXWithSwitch import MoveRelativeSpeedXWithSwitch
+from auv8_mission_controller_flexbe_states.moveSpeedRelativeXWithSwitch import moveSpeedRelativeXWithSwitch
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
 
@@ -62,7 +62,7 @@ class speedToPosSM(Behavior):
 
 			# x:490 y:122
 			OperatableStateMachine.add('speed',
-										MoveRelativeSpeedXWithSwitch(distance=10, speed=1, yaw=0),
+										moveSpeedRelativeXWithSwitch(distance=10, speed=1, yaw=0),
 										transitions={'continue': 'finished', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 

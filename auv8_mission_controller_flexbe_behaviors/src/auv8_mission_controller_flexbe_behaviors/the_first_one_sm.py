@@ -10,7 +10,7 @@
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
 from auv8_mission_controller_flexbe_states.moveZByStep import MoveZByStep
 from auv8_mission_controller_flexbe_states.RotateYawRelative import RotateYawRelative
-from auv8_mission_controller_flexbe_states.moveXRelatif import MoveXRelative
+from auv8_mission_controller_flexbe_states.moveXRelatif import moveXRelatif
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
 
@@ -72,19 +72,19 @@ class TheFirstOneSM(Behavior):
 
 			# x:656 y:152
 			OperatableStateMachine.add('move 2',
-										MoveXRelative(distance_x=2),
+										moveXRelatif(distance_x=2),
 										transitions={'continue': 'rotate 2', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
 			# x:655 y:303
 			OperatableStateMachine.add('move 3',
-										MoveXRelative(distance_x=2),
+										moveXRelatif(distance_x=2),
 										transitions={'continue': 'rotate 3', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
 			# x:359 y:67
 			OperatableStateMachine.add('move x 2m',
-										MoveXRelative(distance_x=2),
+										moveXRelatif(distance_x=2),
 										transitions={'continue': 'Rotate right', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
@@ -102,7 +102,7 @@ class TheFirstOneSM(Behavior):
 
 			# x:374 y:401
 			OperatableStateMachine.add('move 4',
-										MoveXRelative(distance_x=2),
+										moveXRelatif(distance_x=2),
 										transitions={'continue': 'finished', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 

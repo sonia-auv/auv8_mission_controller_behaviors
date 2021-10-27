@@ -9,7 +9,7 @@
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
 from flexbe_states.log_state import LogState
-from auv8_mission_controller_flexbe_states.vision import LaunchVision
+from auv8_mission_controller_flexbe_states.vision import vision
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
 
@@ -62,7 +62,7 @@ class test_launch_frontSM(Behavior):
 
 			# x:208 y:150
 			OperatableStateMachine.add('launch_front',
-										LaunchVision(param_node_name='simple_jiangshi', camera_no=1, param_cmd=1),
+										vision(param_node_name='simple_jiangshi', camera_no=1, param_cmd=1),
 										transitions={'continue': 'finished', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 

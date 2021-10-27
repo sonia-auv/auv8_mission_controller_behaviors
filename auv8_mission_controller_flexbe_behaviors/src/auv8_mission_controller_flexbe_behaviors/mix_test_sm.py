@@ -8,9 +8,9 @@
 ###########################################################
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
-from auv8_mission_controller_flexbe_states.moveGlobalZ import MoveZ
-from auv8_mission_controller_flexbe_states.moveGlobalYaw import MoveYaw
-from auv8_mission_controller_flexbe_states.moveGlobalXY import MoveXY
+from auv8_mission_controller_flexbe_states.moveGlobalZ import moveGlobalZ
+from auv8_mission_controller_flexbe_states.moveGlobalYaw import moveGlobalYaw
+from auv8_mission_controller_flexbe_states.moveGlobalXY import moveGlobalXY
 from auv8_mission_controller_flexbe_states.moveRelativeYDecoupled import MoveRelativeYDecoupled
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
@@ -58,19 +58,19 @@ class mixtestSM(Behavior):
 		with _state_machine:
 			# x:161 y:99
 			OperatableStateMachine.add('depth',
-										MoveZ(depth=1),
+										moveGlobalZ(depth=1),
 										transitions={'continue': 'yaw', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
 			# x:506 y:194
 			OperatableStateMachine.add('yaw',
-										MoveYaw(yaw=155),
+										moveGlobalYaw(yaw=155),
 										transitions={'continue': 'deadrecon', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
 			# x:753 y:301
 			OperatableStateMachine.add('deadrecon',
-										MoveXY(positionX=1, positionY=1),
+										moveGlobalXY(positionX=1, positionY=1),
 										transitions={'continue': 'asdadsa', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 

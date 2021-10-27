@@ -10,7 +10,7 @@
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
 from auv8_mission_controller_flexbe_states.moveZByStep import MoveZByStep
 from auv8_mission_controller_flexbe_states.alignAlexFrank import AlignAlexFrank
-from auv8_mission_controller_flexbe_states.vision import LaunchVision
+from auv8_mission_controller_flexbe_states.vision import vision
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
 
@@ -69,7 +69,7 @@ class alignFrankAlexSM(Behavior):
 
 			# x:323 y:43
 			OperatableStateMachine.add('launchFront',
-										LaunchVision(param_node_name='Execution_105', camera_no=1, param_cmd=1),
+										vision(param_node_name='Execution_105', camera_no=1, param_cmd=1),
 										transitions={'continue': 'the best align', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 

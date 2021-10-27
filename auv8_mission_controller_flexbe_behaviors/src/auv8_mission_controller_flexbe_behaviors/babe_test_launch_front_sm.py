@@ -8,7 +8,7 @@
 ###########################################################
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
-from auv8_mission_controller_flexbe_states.vision import LaunchVision
+from auv8_mission_controller_flexbe_states.vision import vision
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
 
@@ -55,7 +55,7 @@ class babe_test_launch_frontSM(Behavior):
 		with _state_machine:
 			# x:206 y:158
 			OperatableStateMachine.add('dsad',
-										LaunchVision(param_node_name='simple_jiangshi', camera_no=1, param_cmd=1),
+										vision(param_node_name='simple_jiangshi', camera_no=1, param_cmd=1),
 										transitions={'continue': 'finished', 'failed': 'failed'},
 										autonomy={'continue': Autonomy.Off, 'failed': Autonomy.Off})
 
