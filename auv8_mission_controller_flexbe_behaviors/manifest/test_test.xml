@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="test_test">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.test_test_sm" class="test_testSM" />
+	<tagstring>move</tagstring>
+	<author>Camille Sauvain</author>
+	<date>Fri Oct 29 2021</date>
+	<description>
+		test test
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>
