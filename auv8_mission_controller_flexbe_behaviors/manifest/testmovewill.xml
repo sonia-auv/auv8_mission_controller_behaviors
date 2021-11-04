@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="TestMoveWill">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.testmovewill_sm" class="TestMoveWillSM" />
+	<tagstring>move</tagstring>
+	<author>William Brouillard</author>
+	<date>Sat Oct 30 2021</date>
+	<description>
+		Test for a movement state
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+	<params>
+
+		<param type="numeric" name="MoveX" default="0" label="MoveX" hint="Sets the MoveX">
+			<min value="-5" />
+			<max value="5" />
+		</param>
+
+		<param type="numeric" name="MoveY" default="0" label="MoveY" hint="Sets the MoveY">
+			<min value="-5" />
+			<max value="5" />
+		</param>
+
+		<param type="numeric" name="MoveZ" default="0" label="MoveZ" hint="Sets the MoveZ">
+			<min value="-2" />
+			<max value="2" />
+		</param>
+
+		<param type="numeric" name="RotX" default="0" label="RotX" hint="Sets the RotX">
+			<min value="-360" />
+			<max value="360" />
+		</param>
+
+		<param type="numeric" name="RotY" default="0" label="RotY" hint="Sets the RotY">
+			<min value="-360" />
+			<max value="360" />
+		</param>
+
+		<param type="numeric" name="RotZ" default="0" label="RotZ" hint="Sets the RotZ">
+			<min value="-360" />
+			<max value="360" />
+		</param>
+
+		<param type="numeric" name="Frame" default="1" label="Frame" hint="Sets the Frame">
+			<min value="0" />
+			<max value="3" />
+		</param>
+
+		<param type="numeric" name="Time" default="10" label="Time" hint="Sets the Time">
+			<min value="0" />
+			<max value="20" />
+		</param>
+
+		<param type="numeric" name="Fine" default="0" label="Fine" hint="Sets the Fine">
+			<min value="0" />
+			<max value="1" />
+		</param>
+
+		<param type="boolean" name="Rotation" default="True" label="Rotation" hint="Sets the Rotation" />
+
+	</params>
+
+
+</behavior>
