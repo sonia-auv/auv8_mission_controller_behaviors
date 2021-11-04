@@ -9,7 +9,14 @@ from time import time
 
 class setControlMode(EventState):
     """
-    
+        Set the control mode of the sub.
+        [...]
+
+        --mode      uint8   The control mode wanted.
+        --timeout   uint8   The time allowed to do the change.
+
+        <= continue     Indicate that the mode is different from 0.
+        <= failed       Indicate that the mode didn't changed.
     """
 
     def __init__(self, mode, timeout):
