@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="Test_startFilterChain">
+
+	<executable package_path="auv8_mission_controller_flexbe_behaviors.test_startfilterchain_sm" class="Test_startFilterChainSM" />
+	<tagstring>test</tagstring>
+	<author>William Brouillard</author>
+	<date>Thu Nov 04 2021</date>
+	<description>
+		test
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>
